@@ -417,3 +417,125 @@
 //	printf("%d", num);
 //	return 0;
 //}
+//#include <stdio.h>
+//int main()
+//{
+	/*int num = 0;
+	scanf_s("%d", &num);
+	int ret = num % 10;*/
+//	if (num < 10 && num > -10)
+//	{
+//		printf("%d", num);
+//	}
+//	if (num < 100 && num > -100)
+//	{
+//		int ret = num / 10;
+//		num = (num % 10) * 10 +  ret;
+//		printf("%d", num);
+//	}
+//	if (num < 1000 && num > -1000)
+//	{
+//		int ret = num / 10;
+//		num = (num % 10) * 10 + ret;
+//		printf("%d", num);
+//	}
+//	return 0;
+//}
+//#include <stdio.h>
+////#include <math.h>
+//int My_pow(int y)
+//{
+//	int i = 0;
+//	int num = 1;
+//		for (i = 0; i < y; i++)
+//		{
+//			num *= 10;
+//		}
+//		return num;
+//}
+//int main()
+//{
+//	int num = 0;
+//	scanf_s("%d", &num);
+//	int i = 0;
+//	int count = 0;
+//	int num4 = num;
+//	while (num4)
+//	{
+//		num4 /=  10;
+//		count++;
+//	}
+//	int num3 = 0;
+//	//printf("%d", count);
+//	for (i = 1; i <= count; i++)
+//	{
+//		int s1 = num % My_pow(i);
+//		int num1 = s1 / My_pow(i - 1);
+//		int s2 = num / My_pow(count - 1);
+//		int num2 = s2 % 10;
+//		if (i != count)
+//		{
+//			num3 += num1 * My_pow(count - 1);
+//			num3 += num2 * My_pow(i - 1);
+//		}
+//		else
+//			num3 += num1 * My_pow(count - 1);
+//		count--;
+//	}
+//	printf("%d", num3);
+//	return 0;
+
+//}*/
+//#include <stdio.h>
+//void Fbnq(int a,int n,int m,int x,int num)
+//{
+//	if (num < n)
+//	{
+//
+//	}
+//}
+//#include <stdio.h>
+//int main()
+//{
+//	int num = 1;
+//	int a, n, m, x;
+//	
+//	scanf_s("%d%d%d%d", &a, &n, &m, &x);
+//	int i, count = 1;
+//	int num1, num2, num3, num4;
+//	for (i = 0; i < n; i++)
+//	{
+//
+//	}
+//	return 0;
+//}
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int N, C;
+	scanf_s("%d%d", &N, &C);
+	int i = 0;
+	int arr[200000] = { 0 };
+	for (i = 0; i < N; i++)
+	{
+		int k = 0;
+		scanf_s("%d", &k);
+		arr[i] = k;
+	}
+	int k = 0;
+	int count = 0;
+	for (i = 0; i < N - 1; i++)
+	{
+		for (k = i+1; k < N; k++)
+		{
+			int ret = arr[i] - arr[k];
+			if (abs(ret) == C)
+			{
+				count++;
+			}			
+		}
+	}
+	printf("%d", count);
+	return 0;
+}
