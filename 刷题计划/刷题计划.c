@@ -509,33 +509,140 @@
 //	}
 //	return 0;
 //}
-#include <stdio.h>
-#include <math.h>
-int main()
-{
-	int N, C;
-	scanf_s("%d%d", &N, &C);
-	int i = 0;
-	int arr[200000] = { 0 };
-	for (i = 0; i < N; i++)
-	{
-		int k = 0;
-		scanf_s("%d", &k);
-		arr[i] = k;
-	}
-	int k = 0;
-	int count = 0;
-	for (i = 0; i < N - 1; i++)
-	{
-		for (k = i+1; k < N; k++)
-		{
-			int ret = arr[i] - arr[k];
-			if (abs(ret) == C)
-			{
-				count++;
-			}			
-		}
-	}
-	printf("%d", count);
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//int main()
+//{
+//	int N, C;
+//	scanf_s("%d%d", &N, &C);
+//	int i = 0;
+//	int arr[200000] = { 0 };
+//	for (i = 0; i < N; i++)
+//	{
+//		int k = 0;
+//		scanf_s("%d", &k);
+//		arr[i] = k;
+//	}
+//	int k = 0;
+//	int count = 0;
+//	for (i = 0; i < N - 1; i++)
+//	{
+//		for (k = i+1; k < N; k++)
+//		{
+//			int ret = arr[i] - arr[k];
+//			if (abs(ret) == C)
+//			{
+//				count++;
+//			}			
+//		}
+//	}
+//	printf("%d", count);
+//	return 0;
+//}
+//#include <stdio.h>
+//int main()
+//{
+//int* twoSum(int* nums, int numsSize, int target, int* returnSize) 
+//	int i, j;
+//	int* ret = NULL;
+//	for (i = 0; i < numsSize; i++)
+//	{
+//		for (j = i + 1; j < numsSize; j++)
+//		{
+//			if (nums[i] + nums[j] == target)
+//			{
+//				ret = (int*)malloc(sizeof(int) * 2);
+//				ret[0] = i;
+//				ret[1] = j;
+//				*returnSize = 2;
+//				return ret;
+//
+//			}
+//		}
+//	}
+//	*returnSize = 0;
+//	return NULL;
+//}
+//#include <stdio.h>
+//#include <math.h>
+//int My_pow(int y)
+//{
+//	int i = 0;
+//	int num = 1;
+//	for (i = 0; i < y; i++)
+//	{
+//		num *= 10;
+//	}
+//	return num;
+//}
+//int main()
+//{
+//	int x;
+//	scanf_s("%d", &x);
+//	if (x < 0)
+//	{
+//		printf("false") ;
+//	}
+//	if (x >= 0 && x < 10)
+//	{
+//		printf("true");
+//	}
+//	int arr[10] = { 0 };
+//	int count = 0;
+//	if (x >= 10)
+//	{
+//
+//		int x0 = x;
+//		while (x0)
+//		{
+//			x0 /= 10;
+//			count++;
+//		}
+//		int snum = count;
+//		int i, k;
+//		int ret = 0;
+//		for (i = 0; i < count; i++)
+//		{
+//			int num1 = x / My_pow(count - 1);
+//			arr[i] = num1 % 10;
+//			int num2 = x % My_pow(i + 1);
+//			arr[count - 1] = num2 / My_pow(i);
+//			count--;
+//			if (arr[i] == arr[count] && i != count)
+//			{
+//				ret++;
+//			}
+//		}
+//		if (ret == snum / 2)
+//		{
+//			printf("true");
+//		}
+//	}
+//	return 0;
+//}
+//#include <stdio.h>
+//int main()
+//{
+//	int x = 0;
+//	scanf_s("%d", &x);
+//	int num = x, i, count = 0;
+//	while (num) {
+//		num /= 10;
+//		count++;
+//	}
+//	int arr[10] = { 0 };
+//	for (i = 0; i < count; i++) {
+//		arr[i] = x % 10;
+//		x /= 10;
+//	}
+//	for (i = 0; i < count; i++) {
+//		if (arr[i] != arr[count - 1])
+//		{
+//			printf("false");
+//		}
+//		count--;
+//	}
+//
+//      return 0;
+//
+//}
