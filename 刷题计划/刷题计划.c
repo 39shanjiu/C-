@@ -646,3 +646,142 @@
 //      return 0;
 //
 //}
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 0;
+//	int k = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		for (k = 0; k < 10; k++)
+//		{
+//			break;
+//		}
+//	}
+//	return 0;
+	/*char* arr[] = { "flight","flow","flower" };
+	char**p = arr;
+	int i = 0;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	char arr1[10] = { 0 };
+	for (i = 0; i < sz; i++)
+	{
+		if (*(p[i] + i) == *(p[i] + i + 1) && *(p[i] + i + 1) == *(p[i] + i + 2))
+		{
+			
+			arr1[i] = p[i] + i;
+		}
+	}
+	printf("%s\n", arr1);
+	return 0;*/
+//}
+
+
+
+
+
+//
+
+//
+//查找，数组里字符串
+//借鉴输入输出格式。
+//#include <stdio.h>
+//int main()
+//{
+//	char* longestCommonPrefix(char** strs, int strsSize) {
+//		if (strsSize == 0)
+//			return "";
+//		int i, k;
+//		int sz = strlen(strs[0]);
+//		for (i = 0; i < sz; i++) {
+//			for (k = 1; k < strsSize; k++) {
+//				if (strs[0][i] != strs[k][i]) {
+//					strs[0][i] = '\0';
+//					break;
+//				}
+//
+//			}
+//			if (strs[0][i] == '\0')
+//				break;
+//		}
+//		//END = 0;
+//		return strs[0];
+//
+//	}
+//}
+//bool isValid(char* s) {
+//	int i;
+//	if (strlen(s) == 1)
+//		return false;
+//	int sz = strlen(s);
+//	for (i = 1; i < sz; i++) {
+//		if (s[i - 1] == '(' && s[i] != ')')
+//		{
+//			return false;
+//			break;
+//		}
+//		else if (s[i - 1] == '[' && s[i] != ']')
+//		{
+//			return false;
+//			break;
+//		}
+//		else if (s[i - 1] == '{' && s[i] != '}')
+//		{
+//			return false;
+//			break;
+//		}
+//		else
+//			i++;
+//	}
+//	return true;
+//
+//}
+#include <stdio.h>
+
+
+/////符号匹配问题
+//标准的入栈出栈问题
+//有两种情况错误
+//1.相对应的括号不匹配
+//2.左右括号多余
+int main()
+{
+	bool isValid(char* s) {
+		int i;
+		if (strlen(s) == 1)//
+			return false;
+		int sz = strlen(s);
+		char* arr = malloc(sizeof(char*) * sz);//像内存申请char* sz的内存
+		if (sz % 2 == 1)//奇数肯定错
+			return false;
+		int count = 0;//标准的出栈入栈
+		for (i = 0; i < sz; i++)
+		{
+			if (s[i] == '(')//如果是左括号，则入对应的右括号（便于后面右括号匹配）
+			{
+				arr[count++] = ')';
+			}
+			else if (s[i] == '{')//注意count是后置--
+			{
+				arr[count++] = '}';
+			}
+			else if (s[i] == '[')
+			{
+				arr[count++] = ']';
+			}
+			else if (count == 0 || arr[count - 1] != s[i])
+				//如果是右括号，则与栈顶的左括号匹配（之前存右括号作用体现在这）
+				//这里解决情况1
+			{
+				return false;
+			}
+			else
+				count--;
+		}
+		if (count != 0)//如果count不为0，则表示左右括号溢出
+			//（count> 0，左括号溢出。count < 0，右括号溢出，不过右括号溢出会在上面判断时处理）
+			return false;
+		return true;
+
+	}
+}
