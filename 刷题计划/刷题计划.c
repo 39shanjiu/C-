@@ -736,7 +736,7 @@
 //	return true;
 //
 //}
-#include <stdio.h>
+//#include <stdio.h>
 
 
 /////符号匹配问题
@@ -744,44 +744,133 @@
 //有两种情况错误
 //1.相对应的括号不匹配
 //2.左右括号多余
-int main()
-{
-	bool isValid(char* s) {
-		int i;
-		if (strlen(s) == 1)//
-			return false;
-		int sz = strlen(s);
-		char* arr = malloc(sizeof(char*) * sz);//像内存申请char* sz的内存
-		if (sz % 2 == 1)//奇数肯定错
-			return false;
-		int count = 0;//标准的出栈入栈
-		for (i = 0; i < sz; i++)
-		{
-			if (s[i] == '(')//如果是左括号，则入对应的右括号（便于后面右括号匹配）
-			{
-				arr[count++] = ')';
-			}
-			else if (s[i] == '{')//注意count是后置--
-			{
-				arr[count++] = '}';
-			}
-			else if (s[i] == '[')
-			{
-				arr[count++] = ']';
-			}
-			else if (count == 0 || arr[count - 1] != s[i])
-				//如果是右括号，则与栈顶的左括号匹配（之前存右括号作用体现在这）
-				//这里解决情况1
-			{
-				return false;
-			}
-			else
-				count--;
-		}
-		if (count != 0)//如果count不为0，则表示左右括号溢出
-			//（count> 0，左括号溢出。count < 0，右括号溢出，不过右括号溢出会在上面判断时处理）
-			return false;
-		return true;
+//int main()
+//{
+//	bool isValid(char* s) {
+//		int i;
+//		if (strlen(s) == 1)//
+//			return false;
+//		int sz = strlen(s);
+//		char* arr = malloc(sizeof(char*) * sz);//像内存申请char* sz的内存
+//		if (sz % 2 == 1)//奇数肯定错
+//			return false;
+//		int count = 0;//标准的出栈入栈
+//		for (i = 0; i < sz; i++)
+//		{
+//			if (s[i] == '(')//如果是左括号，则入对应的右括号（便于后面右括号匹配）
+//			{
+//				arr[count++] = ')';
+//			}
+//			else if (s[i] == '{')//注意count是后置--
+//			{
+//				arr[count++] = '}';
+//			}
+//			else if (s[i] == '[')
+//			{
+//				arr[count++] = ']';
+//			}
+//			else if (count == 0 || arr[count - 1] != s[i])
+//				//如果是右括号，则与栈顶的左括号匹配（之前存右括号作用体现在这）
+//				//这里解决情况1
+//			{
+//				return false;
+//			}
+//			else
+//				count--;
+//		}
+//		if (count != 0)//如果count不为0，则表示左右括号溢出
+//			//（count> 0，左括号溢出。count < 0，右括号溢出，不过右括号溢出会在上面判断时处理）
+//			return false;
+//		return true;
+//
+//	}
+//}
 
-	}
-}
+
+
+////经典的双指针（快慢指针）题目
+////题目是给了一个升序数组，要你去除重复的数字后再打印出来
+////注意一旦有一个重复的数字去除后，后面的数字要到前面来
+////这里用快慢指针
+////一开始慢指针指向第一个元素，快指针指向第二个元素
+////原理
+////慢指针要遇到与快指针不同的数后才走
+////这样保证慢指针经过的元素不会重复
+//int removeDuplicates(int* nums, int numsSize) {
+//	int i = 1;
+//	int count = 0;
+//	int k = 0;
+//	while (i < numsSize) {
+//		if (nums[k] == nums[i])//如果相等，就是有重复元素
+//			//快指针走，且计数加一；
+//		{
+//			i++;
+//			count++;
+//		}
+//		else//不相等，快慢指针都走
+//		{
+//			nums[k + 1] = nums[i];//将快指针的内容给慢指针
+//			k++;
+//			i++;
+//		}
+//	}
+//
+//	return numsSize - count;
+//
+//
+//}
+//#include <stdio.h>
+//int main()
+//{
+//	int n;
+//	scanf_s("%d", &n);
+//	int arr[100] = { 0 };
+//	int s = n;
+//	while (s)
+//	{
+//		int N;
+//		scanf_s("%d", &N);
+//		s--;
+//		arr[s] = N;
+//	}
+//	int i = 0;
+//	int k = 1;
+//	for (i = 0; i < n; i++)
+//	{
+//		for (k = 1; k < n; k++)
+//		{
+//			if (arr[k-1] > arr[k])
+//			{
+//				int ret = arr[k-1];
+//				arr[k-1] = arr[k];
+//				arr[k] = ret;
+//			}
+//		}
+//	}
+//	 i = 0;
+//	 k = 1;
+//	int count = 0;
+//	while (k < n)
+//	{
+//		if (arr[i] == arr[k])
+//		{	
+//			k++;
+//		count++;
+//		}
+//		else
+//		{
+//			arr[i + 1] = arr[k];
+//			i++;
+//			k++;
+//		}
+//	}
+//	 n =n - count;
+//	 printf("%d\n", n);
+//	 for (i = 0; i < n; i++)
+//	 {
+//		 printf("%d ", arr[i]);
+//	 }
+//	 
+//
+//	return 0;
+//}
