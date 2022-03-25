@@ -874,3 +874,244 @@
 //
 //	return 0;
 //}
+//#include <stdio.h>
+//int main()
+//{
+//	int prices[] = { 7,1,5,3,6,4 };
+//	int len = sizeof(prices) / sizeof(prices[0]);
+//	int i, k;
+//	int max = 0;
+//	int s1,s2;
+//	for (i = len - 1; i >= 0; i--)
+//	{
+//		if (i != len - 1)
+//		{
+//			if (prices[s1] > prices[i])
+//				continue;
+//			else
+//			{
+//				if (i > s2)
+//				{
+//					max = prices[i] - prices[s2];
+//				}
+//			}
+//		}
+//		for (k = 0; k < i; k++)
+//		{
+//			int num = prices[i] - prices[k];
+//			if (num > max)
+//			{
+//				max = num;
+//				s2 = k;
+//			}
+//			s1 = i;
+//
+//		}
+//	}
+//	printf("%d", max);
+//	return 0;
+//}
+#include <stdio.h>
+//int main()
+//{
+//	int prices[] = {1,2};
+//	int i = 0, k = 1;//
+//	int max = 0;
+//	int len = sizeof(prices) / sizeof(prices[0]);
+//	while (k < len)
+//	{
+//		if(i < k)
+//		{
+//			if (prices[k] - prices[i] > max)
+//			{
+//				max = prices[k] - prices[i];
+//
+//			}
+//			else if (prices[k] < prices[i])
+//			{
+//				i = k;
+//	
+//			}
+//		}
+//		k++;
+//	}
+//	printf("%d", max);
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[] = { 0,0,0,0,0,0,0,0,0 };
+//	int n = 1;
+//	int i = 0;
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int count = 0;
+//	int num = 0;
+//	if (arr[0] == arr[1] && arr[0] == 0)
+//	{
+//		arr[0] = 1;
+//		count++;
+//	}
+//	if (arr[sz-1] == arr[sz-2] && arr[sz-1] == 0)
+//	{
+//		arr[sz-1] = 1;
+//		count++;
+//	}
+//	for (i = 0; i < sz; i++)
+//	{
+//		if (arr[i] == 0)
+//			num++;
+//		else {
+//			num = 0;
+//		}
+//		if (num == 3)
+//		{
+//			num = 0;
+//			count++;
+//			i--;
+//		}
+//	}
+//	printf("%d", count);
+//	return 0;
+//}
+//int i = 0;
+//int sz = sizeof(flowerbed) / sizeof(flowerbed[0]);
+//int count = 0;
+//if (flowerbed[0] == 0 && flowerbed[1] == 0 && sz <= 3)
+//{
+//	if (sz = 3) {
+//		if (flowerbed[2] == 0)
+//		{
+//			return (2 >= n);
+//		}
+//	}
+//	else {
+//		return (1 >= n);
+//	}
+//
+//}
+//else if (flowerbed[0] == 0 && flowerbed[1] == 0)
+//{
+//	flowerbed[0] = 1;
+//	count++;
+//}
+//for (i = 1; i < sz - 1; i++)
+//{
+//	if (flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0 && flowerbed[i] != 1)
+//	{
+//		count++;
+//		flowerbed[i] = 1;
+//	}
+//}
+//if (count >= n)
+//return true;
+//else
+//return false;
+//}
+//if (flowerbed[0] == flowerbed[1] && flowerbed[0] == 0)
+//{
+//	flowerbed[0] = 1;
+//	count++;
+//}
+//if (flowerbed[flowerbedSize - 1] == flowerbed[flowerbedSize - 2] && flowerbed[flowerbedSize - 1] == 0)
+//{
+//	flowerbed[flowerbedSize - 1] = 1;
+//	count++;
+//}
+//int num = 0;
+//for (i = 0; i < flowerbedSize; i++)
+//{
+//	if (flowerbed[i] == 0)
+//		num++;
+//	else if (flowerbed[i] == 1)
+//		num = 0;
+//	if (num == 3)
+//	{
+//		count++;
+//		num = 0;
+//	}
+//
+//}
+
+
+
+//简简单单一个种花问题，搞了怎么久，；离谱。
+//int i = 0;
+//int count = 0;
+//if (flowerbedSize == 1)//判断只有一个位置的时候
+//{
+//	if (flowerbed[i] == 0)
+//		return (n <= 1);
+//	else
+//		return n == 0;
+//}
+//if (flowerbedSize == 3)//判断有三个位子的时候
+//{
+//	if (flowerbed[1] == 1)
+//		return (n == 0);
+//	else
+//	{
+//		if (flowerbed[0] == 0 && flowerbed[2] == 0)
+//		{
+//			return (n <= 2);
+//		}
+//		else if (flowerbed[0] == 1 && flowerbed[2] == 1)
+//			return (n == 0);
+//		else
+//			return (n <= 1);
+//	}
+//}
+//if (flowerbed[0] == flowerbed[1] && flowerbed[0] == 0)//判断左右两边[0，0]的情况
+//{
+//	flowerbed[0] = 1;
+//	count++;
+//}
+//if (flowerbed[flowerbedSize - 1] == flowerbed[flowerbedSize - 2] && flowerbed[flowerbedSize - 1] == 0)
+//{
+//	flowerbed[flowerbedSize - 1] = 1;
+//	count++;
+//}
+//int num = 0;//用来记录连续水坑的数量
+//for (i = 0; i < flowerbedSize; i++)
+//{
+//	if (flowerbed[i] == 0)//有水坑num+1
+//		num++;
+//	//遇到花水坑连续中断，num归零
+//	else if (flowerbed[i] == 1) {
+//		num = 0;
+//	}
+//	if (num == 3)//有三个连续的水坑，可以种花
+//	{
+//		count++;
+//		num = 1;//第三个水坑还可以再利用
+//	}
+//}
+//return (n <= count);
+//}
+int main()
+{
+	int arr[] = { 1,0,0,0 };
+	int i, count = 0;
+	int num = 1;
+	for (i = 0; i < 4; i++)
+	{
+		if (arr[i] == 0)
+		{
+			num++;
+		}
+		else
+		{
+			num = 0;
+		}
+		if (num != 3&&i == 3)
+		{
+			num++;
+		}
+		if (num == 3)
+		{
+			count++;
+			num = 1;
+		}
+	}
+	printf("%d", count);
+	return 0;
+}
