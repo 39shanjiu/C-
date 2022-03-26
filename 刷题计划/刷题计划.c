@@ -1087,31 +1087,172 @@
 //}
 //return (n <= count);
 //}
-int main()
-{
-	int arr[] = { 1,0,0,0 };
-	int i, count = 0;
-	int num = 1;
-	for (i = 0; i < 4; i++)
+//int main()
+//{
+//	int arr[] = { 1,0,0,0 };
+//	int i, count = 0;
+//	int num = 1;
+//	for (i = 0; i < 4; i++)
+//	{
+//		if (arr[i] == 0)
+//		{
+//			num++;
+//		}
+//		else
+//		{
+//			num = 0;
+//		}
+//		if (num != 3&&i == 3)
+//		{
+//			num++;
+//		}
+//		if (num == 3)
+//		{
+//			count++;
+//			num = 1;
+//		}
+//	}
+//	printf("%d", count);
+//	return 0;
+//}
+//int main()
+//{
+//	double x = -2.0;
+//	int n = 10;
+//	double num = x;
+//	printf("%lf ",x * 0  );
+//	if (x == -1)
+//	{
+//		int y = n % 2;
+//		printf("%lf", y*x);
+//	}
+//		int flag = 1;
+//	if (n < 0)
+//	{
+//		n = -n;
+//		flag = -1;
+//	}
+//	if (n == 0)
+//		return 1;
+//	while (n >= 2)//4 5  ; 4*4 4
+//	{
+//		if ((n % 2) == 0)
+//		{
+//			x *= num;
+//			n /= 2;
+//			num *= num;
+//		}
+//		else
+//		{
+//			x *= num;			
+//			n--;
+//		}
+//	}
+//	if (flag == -1)
+//		printf("%lf",1 / x) ;
+//	printf("%lf", x);
+//	return 0;
+//}
+//int main()
+//{
+//	int nums[] = { 2,3,1,1,0 };
+//	int numsSize = 6;
+//	/*if (nums[0] == 0)
+//		return false;*/
+//	int arr[30050] = { 0 };
+//	int i = 0;
+//	int count = 0;
+//	for (i = 0; i < numsSize; i++)
+//	{
+//		if (nums[i] == 0)
+//		{
+//			arr[count] = i;
+//			count++;
+//		}
+//	}
+//	int ret = count;
+//	count = 0;
+//	for (i = 0; i < arr[count]; i++)
+//	{
+//		if (count >= ret)
+//		{
+//			printf("win");
+//			break;
+//
+//		}
+//		if (nums[i] > (arr[count] - i))
+//		{
+//			i = arr[count];
+//			count++;
+//		}
+//		if (arr[count] == 0)
+//		{
+//			printf("win");
+//		}
+//		
+//	}
+//	printf("false");
+//	return 0;
+//}
+
+
+
+
+
+//写了这么多，别人两三行解决，你明明也想到了那个点，但还是再复杂的道路上越走越远。
+bool canJump(int* nums, int numsSize) {
+	if (numsSize == 1)
+		return true;
+	if (nums[0] == 0)
+		return false;
+	int arr[30050] = { 0 };
+	int i = 0;
+	int count = 0;
+	if (nums[numsSize - 1] == 0)
+		nums[numsSize - 1] = 1;
+	for (i = 0; i < numsSize; i++)
 	{
-		if (arr[i] == 0)
+		if (nums[i] == 0)
 		{
-			num++;
-		}
-		else
-		{
-			num = 0;
-		}
-		if (num != 3&&i == 3)
-		{
-			num++;
-		}
-		if (num == 3)
-		{
+			arr[count] = i;
 			count++;
-			num = 1;
 		}
 	}
-	printf("%d", count);
-	return 0;
+	if (count == 0)
+		return true;
+	int ret = count;
+	count = 0;
+	for (i = 0; i < arr[count]; i++)
+	{
+		if (count >= ret)
+		{
+			return true;
+		}
+		if (nums[i] > (arr[count] - i))//2 > 1
+		{
+			int k = i;
+			for (k = i; k <= (i + nums[i]); k++)//k = 0
+			{
+				if (nums[k] >= (numsSize - 1 - k))//2+5-1-0>5    -- 2 > 5-1-0
+					return true;
+				else if (nums[k] > nums[i])
+				{
+					i = k;
+				}
+			}
+			while (ret - count)
+			{
+				if (nums[i] > (arr[count] - i))
+					count++;
+				else
+					break;
+			}
+			i = arr[count - 1];
+		}
+		if (arr[count] == 0)
+		{
+			return true;
+		}
+	}
+	return false;
 }
