@@ -1200,59 +1200,177 @@
 
 
 //写了这么多，别人两三行解决，你明明也想到了那个点，但还是再复杂的道路上越走越远。
-bool canJump(int* nums, int numsSize) {
-	if (numsSize == 1)
-		return true;
-	if (nums[0] == 0)
-		return false;
-	int arr[30050] = { 0 };
-	int i = 0;
+//bool canJump(int* nums, int numsSize) {
+//	if (numsSize == 1)
+//		return true;
+//	if (nums[0] == 0)
+//		return false;
+//	int arr[30050] = { 0 };
+//	int i = 0;
+//	int count = 0;
+//	if (nums[numsSize - 1] == 0)
+//		nums[numsSize - 1] = 1;
+//	for (i = 0; i < numsSize; i++)
+//	{
+//		if (nums[i] == 0)
+//		{
+//			arr[count] = i;
+//			count++;
+//		}
+//	}
+//	if (count == 0)
+//		return true;
+//	int ret = count;
+//	count = 0;
+//	for (i = 0; i < arr[count]; i++)
+//	{
+//		if (count >= ret)
+//		{
+//			return true;
+//		}
+//		if (nums[i] > (arr[count] - i))//2 > 1
+//		{
+//			int k = i;
+//			for (k = i; k <= (i + nums[i]); k++)//k = 0
+//			{
+//				if (nums[k] >= (numsSize - 1 - k))//2+5-1-0>5    -- 2 > 5-1-0
+//					return true;
+//				else if (nums[k] > nums[i])
+//				{
+//					i = k;
+//				}
+//			}
+//			while (ret - count)
+//			{
+//				if (nums[i] > (arr[count] - i))
+//					count++;
+//				else
+//					break;
+//			}
+//			i = arr[count - 1];
+//		}
+//		if (arr[count] == 0)
+//		{
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+#include <stdio.h>
+#include <string.h>
+// 懂不懂一遍过的含金量啊（后仰）；
+//int main()
+//{
+//	int nums[] = { 0,2,2,1,2,0,0,1 };
+//	int numsSize = 8;
+//	int l = 0;
+//	int r = 7;
+//	int i = 0;
+//	int ret;
+//	for (i = 0; i <= r; i++)
+//	{
+//		if (nums[i] == 0)
+//		{
+//			ret = nums[i];
+//			nums[i] = nums[l];
+//			nums[l] = ret;
+//			l++;
+//		}
+//		if (nums[i] == 2)
+//		{
+//			ret = nums[i];
+//			nums[i] = nums[r];
+//			nums[r] = ret;
+//			i--;
+//			r--;
+//		}
+//	}
+//	return 0;
+//
+//}
+//int main()
+//{
+//	int divisor = 1;
+//	int dividend = 1;
+//	int flag = 1;
+//	if (divisor < 0)
+//	{
+//		flag *= -1;
+//		divisor = -divisor;
+//	}
+//	int i = 0;
+//	if (dividend < 0)
+//	{
+//		dividend = -dividend;
+//		flag *= -1;
+//	}
+//	int count = 0;
+//	for (i = 1; i <= dividend; i++)
+//	{
+//		count = 0;
+//		int num = 0;
+//		int ret = divisor;
+//		while (ret)
+//		{
+//			num += i;
+//			ret--;
+//		}
+//		if (num <= dividend && (num + divisor) > dividend)
+//		{
+//			count = i;
+//			break;
+//		}
+//	}
+//	if (flag == -1)
+//	return 0;
+//}
+int divide(int dividend, int divisor) {
+	if (dividend == -2147483648 && divisor == -1)
+		return 2147483647;
+	if (dividend == -2147483648 && divisor == -2147483648)
+		return 1;
+	if (divisor == -2147483648)
+		return 0;
+	if (divisor == 1)
+		return dividend;
+	int flag = 1;
+	if (divisor < 0)
+	{
+		flag *= -1;
+		divisor = -divisor;
+	}
+	int i = dividend;
+	int num = divisor;
+	if (dividend < 0)
+	{
+		if (dividend == -2147483648)
+		{
+			dividend++;
+		}
+		dividend = -dividend;
+		flag *= -1;
+	}
 	int count = 0;
-	if (nums[numsSize - 1] == 0)
-		nums[numsSize - 1] = 1;
-	for (i = 0; i < numsSize; i++)
+	int ret = 1;
+	while (dividend >= divisor)
 	{
-		if (nums[i] == 0)
+		while (dividend - num > num)
 		{
-			arr[count] = i;
-			count++;
+			num += num;
+			ret += ret;
 		}
+		dividend -= num;
+		count += ret;
+		ret = 1;
+		num = divisor;
 	}
-	if (count == 0)
-		return true;
-	int ret = count;
-	count = 0;
-	for (i = 0; i < arr[count]; i++)
+	if (i == -2147483648 && dividend + 1 == divisor)
 	{
-		if (count >= ret)
-		{
-			return true;
-		}
-		if (nums[i] > (arr[count] - i))//2 > 1
-		{
-			int k = i;
-			for (k = i; k <= (i + nums[i]); k++)//k = 0
-			{
-				if (nums[k] >= (numsSize - 1 - k))//2+5-1-0>5    -- 2 > 5-1-0
-					return true;
-				else if (nums[k] > nums[i])
-				{
-					i = k;
-				}
-			}
-			while (ret - count)
-			{
-				if (nums[i] > (arr[count] - i))
-					count++;
-				else
-					break;
-			}
-			i = arr[count - 1];
-		}
-		if (arr[count] == 0)
-		{
-			return true;
-		}
+		count++;
 	}
-	return false;
+	if (flag == -1)
+		return (flag * count);
+	else
+		return count;
+
 }
