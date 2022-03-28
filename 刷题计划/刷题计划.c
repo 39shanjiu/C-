@@ -1374,3 +1374,22 @@ int divide(int dividend, int divisor) {
 		return count;
 
 }
+bool hasAlternatingBits(int n) {
+	int count = 0;
+	if (n % 2 == 1)
+	{
+		n /= 2;
+	}
+	while (n)
+	{
+		if (n % 2 != 0)
+			return false;
+		else
+			n /= 2;
+		if (n % 2 != 1)
+			return false;
+		else
+			n /= 2;
+	}
+	return true;
+}
