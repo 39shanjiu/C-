@@ -1324,67 +1324,67 @@
 //	if (flag == -1)
 //	return 0;
 //}
-int divide(int dividend, int divisor) {
-	if (dividend == -2147483648 && divisor == -1)
-		return 2147483647;
-	if (dividend == -2147483648 && divisor == -2147483648)
-		return 1;
-	if (divisor == -2147483648)
-		return 0;
-	if (divisor == 1)
-		return dividend;
-	int flag = 1;
-	if (divisor < 0)
-	{
-		flag *= -1;
-		divisor = -divisor;
-	}
-	int i = dividend;
-	int num = divisor;
-	if (dividend < 0)
-	{
-		if (dividend == -2147483648)
-		{
-			dividend++;
-		}
-		dividend = -dividend;
-		flag *= -1;
-	}
-	int count = 0;
-	int ret = 1;
-	while (dividend >= divisor)
-	{
-		while (dividend - num > num)
-		{
-			num += num;
-			ret += ret;
-		}
-		dividend -= num;
-		count += ret;
-		ret = 1;
-		num = divisor;
-	}
-	if (i == -2147483648 && dividend + 1 == divisor)
-	{
-		count++;
-	}
-	if (flag == -1)
-		return (flag * count);
-	else
-		return count;
-
-}
-bool hasAlternatingBits(int n) {
-	int count = 0;
-	if (n % 2 == 1)
-	{
-		n /= 2;
-	}
-	while (n)
-	{
-		if (n % 2 != 0)
-			return false;
-		else
+//int divide(int dividend, int divisor) {
+//	if (dividend == -2147483648 && divisor == -1)
+//		return 2147483647;
+//	if (dividend == -2147483648 && divisor == -2147483648)
+//		return 1;
+//	if (divisor == -2147483648)
+//		return 0;
+//	if (divisor == 1)
+//		return dividend;
+//	int flag = 1;
+//	if (divisor < 0)
+//	{
+//		flag *= -1;
+//		divisor = -divisor;
+//	}
+//	int i = dividend;
+//	int num = divisor;
+//	if (dividend < 0)
+//	{
+//		if (dividend == -2147483648)
+//		{
+//			dividend++;
+//		}
+//		dividend = -dividend;
+//		flag *= -1;
+//	}
+//	int count = 0;
+//	int ret = 1;
+//	while (dividend >= divisor)
+//	{
+//		while (dividend - num > num)
+//		{
+//			num += num;
+//			ret += ret;
+//		}
+//		dividend -= num;
+//		count += ret;
+//		ret = 1;
+//		num = divisor;
+//	}
+//	if (i == -2147483648 && dividend + 1 == divisor)
+//	{
+//		count++;
+//	}
+//	if (flag == -1)
+//		return (flag * count);
+//	else
+//		return count;
+//
+//}
+//bool hasAlternatingBits(int n) {
+//	int count = 0;
+//	if (n % 2 == 1)
+//	{
+//		n /= 2;
+//	}
+//	while (n)
+//	{
+//		if (n % 2 != 0)
+//			return false;
+		/*else
 			n /= 2;
 		if (n % 2 != 1)
 			return false;
@@ -1392,4 +1392,114 @@ bool hasAlternatingBits(int n) {
 			n /= 2;
 	}
 	return true;
+}*/
+//int main()
+//{
+//	char ans[] = "TTTFFTFFT";
+//	int lenth = strlen(ans);
+//	int num[50000] = { 0 };
+//	int i = 0;
+//	int count = 1;
+//	int k = 3;
+//	int n = 0;
+//	for (i = 1; i <= lenth; i++)
+//	{
+//		if (ans[i - 1] == ans[i])
+//		{
+//			count++;
+//		}
+//		else
+//		{
+//			num[n] = count;
+//			n++;
+//			count = 1;
+//		}
+//	}
+//	 int j;
+//	 int max1 = 0;
+//	 for (i = 0; i < n; i++)//j代表的数是被消除的数
+//	 {
+//		 int max = 0;
+//		 count = 0;//计入累计数与k相比
+//		 for (j = i + 1; j + 1< n; j += 2)
+//		 {
+//			 if (k - count >= num[j])
+//			 {
+//				 max += num[j - 1] + num[j];
+//				 count += num[j];
+//			 }
+//			 else
+//			 {
+//				 max += num[j - 1] + k - count;
+//				 break;
+//			 }
+//		 }
+//		 if (j == n)
+//		 {
+//			 max += num[j - 1] + k - count;
+//		 }
+//
+//		 if (max1 < max)
+//			 max1 = max;
+//	 }
+//	 printf("%d", max1);
+	//int max2 = 0;
+	//for (i = 1; i < n; i += 2)//j代表的数是被消除的数
+	//{
+	//	int max = 0;
+	//	count = 0;//计入累计数与k相比
+	//	for (j = i - 1; j + 1 < n; j += 2)
+	//	{
+	//		if (k - count > num[j])
+	//		{
+	//			max += num[j] + num[j + 1];
+	//			count += num[j];
+	//		}
+	//		else
+	//		{
+	//			max += k - count;
+	//			break;
+	//		}
+	//	}
+	//	if (j == n)
+	//	{
+	//		max += num[j - 1];
+	//	}
+	//	if (max2 < max)
+	//		max2 = max;
+	//}
+		//return 0;
+//移动窗口问题
+int main() {
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+	int judy(const char* answerKey, int k, char ch)
+	{
+		int n = strlen(answerKey);
+		int right = 0;
+		int left = 0;
+		int sum = 0;
+		int count = 0;
+		for (right = 0; right < n; right++)
+		{
+			if (answerKey[right] != ch)
+			{
+				count++;
+			}
+			while (count > k)
+			{
+				if (answerKey[left] != ch)
+				{
+					count--;
+				}
+				left++;
+			}
+			sum = MAX(sum, right - left + 1);
+		}
+		return sum;
+	}
+	int maxConsecutiveAnswers(char* answerKey, int k) {
+		int num1 = judy(answerKey, k, 'T');
+		int num2 = judy(answerKey, k, 'F');
+		return MAX(num1, num2);
+	}
 }
