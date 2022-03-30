@@ -1470,36 +1470,101 @@
 	//}
 		//return 0;
 //移动窗口问题
-int main() {
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
-	int judy(const char* answerKey, int k, char ch)
+//int main() {
+//#define MAX(a, b) ((a) > (b) ? (a) : (b))
+//	int judy(const char* answerKey, int k, char ch)
+//	{
+//		int n = strlen(answerKey);
+//		int right = 0;//移动窗口的右端。
+//		int left = 0;//移动窗口的左端。
+//		int sum = 0;//返回的 最大值
+//		int count = 0;//count用来与k比较
+//		for (right = 0; right < n; right++)//每次右端都走一步
+//		{
+//			if (answerKey[right] != ch)//如果是要消除的，count++；
+//			{
+//				count++;//这里加的是右端
+//			}
+//			while (count > k)//当count比k大时，要及时减到k一下
+//			{
+//				if (answerKey[left] != ch)//如果不是，则count--；
+//				{
+//					count--;//这里是左端，左端向前走遇到‘F’表示舍弃这一点
+//				}//是‘F’当然要把用掉的k还回去。
+//				left++;//每次这里都要向前走，是‘T’则继续，是‘F’就把用掉的k还回去一个。
+//			}
+//			sum = MAX(sum, right - left + 1);//每次完后，计入每次移动窗口的最大长度。
+//		}
+//		return sum;
+//	}
+//	int maxConsecutiveAnswers(char* answerKey, int k) {
+//		int num1 = judy(answerKey, k, 'T');
+//		int num2 = judy(answerKey, k, 'F');
+//		return MAX(num1, num2);
+//	}
+//}
+
+
+//好像要用哈希表，但是，暴力解法就是爽。。。。
+
+int main()
+{
+	int n = 6498415;
+	int ret = 0;
+	int count = 0;
+	int num = 0;
+	for (int i = 0; i < 10; i++)
 	{
-		int n = strlen(answerKey);
-		int right = 0;
-		int left = 0;
-		int sum = 0;
-		int count = 0;
-		for (right = 0; right < n; right++)
+		while (n > 0)
 		{
-			if (answerKey[right] != ch)
-			{
-				count++;
-			}
-			while (count > k)
-			{
-				if (answerKey[left] != ch)
-				{
-					count--;
-				}
-				left++;
-			}
-			sum = MAX(sum, right - left + 1);
+			count = n % 10;
+			num += count * count;
+			n /= 10;
 		}
-		return sum;
+		if (num == 1)
+		{
+			printf("%d ", num);
+		}
+		n = num;
+		num = 0;
 	}
-	int maxConsecutiveAnswers(char* answerKey, int k) {
-		int num1 = judy(answerKey, k, 'T');
-		int num2 = judy(answerKey, k, 'F');
-		return MAX(num1, num2);
+	return 0;
+}
+
+/// <summary>
+
+/// </summary>
+/// <param name="nums"></param>
+/// <param name="numsSize"></param>
+
+/// <returns></returns>
+//贪心算法就这？
+int jump(int* nums, int numsSize) {
+	int i = 0;//表示当前位子
+	int k = 0;//表示能跳到的最大位子
+	int num = 0;//复制i；
+	int count = 0;//计入跳跃次数
+	int m = 0;
+	int ret = 0;
+	if (numsSize == 1)
+		return 0;
+	while (i + nums[i] + 1 < numsSize)//判断是否结束跳跃
+	{
+		k = i;
+		while (i + nums[i] >= k && k < numsSize)
+		{
+			num = k + nums[k];
+			if (num > m)
+			{
+				m = num;
+				ret = k;
+			}
+			k++;
+		}
+		i = ret;
+		count++;
 	}
+	if (i + nums[i] + 1 >= numsSize && i < numsSize)
+		count++;
+	return count;
 }
