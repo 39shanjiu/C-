@@ -1539,32 +1539,140 @@ int main()
 
 /// <returns></returns>
 //贪心算法就这？
-int jump(int* nums, int numsSize) {
-	int i = 0;//表示当前位子
-	int k = 0;//表示能跳到的最大位子
-	int num = 0;//复制i；
-	int count = 0;//计入跳跃次数
-	int m = 0;
-	int ret = 0;
-	if (numsSize == 1)
-		return 0;
-	while (i + nums[i] + 1 < numsSize)//判断是否结束跳跃
+//int jump(int* nums, int numsSize) {
+//	int i = 0;//表示当前位子
+//	int k = 0;//表示能跳到的最大位子
+//	int num = 0;//复制i；
+//	int count = 0;//计入跳跃次数
+//	int m = 0;
+//	int ret = 0;
+//	if (numsSize == 1)
+//		return 0;
+//	while (i + nums[i] + 1 < numsSize)//判断是否结束跳跃
+//	{
+//		k = i;
+//		while (i + nums[i] >= k && k < numsSize)
+//		{
+//			num = k + nums[k];
+//			if (num > m)
+//			{
+//				m = num;
+//				ret = k;
+//			}
+//			k++;
+//		}
+//		i = ret;
+//		count++;
+//	}
+//	if (i + nums[i] + 1 >= numsSize && i < numsSize)
+//		count++;
+//	return count;
+//}
+//int* selfDividingNumbers(int left, int right, int* returnSize) {
+//	int* arr = (int*)malloc(sizeof(int) * (right - left + 1));
+//	int i = 0, ret, count, num, scount = 0, k = 0;
+//	for (i = left; i <= right; i++)
+//	{
+//		ret = i;
+//		count = 0;
+//		scount = 0;
+//		while (ret)
+//		{
+//			scount++;
+//			num = ret % 10;
+//			if (num == 0)
+//				break;
+//			if (i % num == 0)
+//			{
+//				count++;
+//			}
+//			ret /= 10;
+//		}
+//		if (scount == count)
+//		{
+//			arr[k] = i;
+//			k++;
+//		}
+//
+//	}
+//	*returnSize = k;
+//	return arr;
+//}
+//struct ListNode
+//{
+//	int val;
+//	struct ListNode* next;
+//};
+////struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+//	int i = 0;
+//	struct ListNode* node1;
+//	struct ListNode* node2;
+//	for (i = 0; i < 55; i++)
+//	{
+//		node1 = list1;
+//		node2 = list2;
+//		if (list1 == NULL)
+//		{
+//			list1->next = list2;
+//		}
+//		if (list2 == NULL)
+//		{
+//			break;
+//		}
+//		if (list1->val >= list2->val)
+//		{
+//			node2 = list2->next;
+//			list2->next = node1->next;
+//			node1->next = list2;
+//			list2 = list2->next;
+//		}
+//		else
+//		{
+//			list1 = list1->next;
+//		}
+//	}
+//	return list1;
+//}
+//int main()
+//{
+//	struct ListNode* headnode1;
+//	struct ListNode* headnode2;
+//	struct ListNode* List1;
+//	struct ListNode* List2;
+//	headnode1->next = List1;
+//	List1->val = 4;
+//	List2->next = NULL;
+//	struct ListNode* node;
+//	node->val = 2;
+//	node->next = List1;
+//	struct ListNode* node1;
+//	mergeTwoLists();
+//}
+//不是很懂？？？？？？？？？
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+	if (!list1)
+		return list2;
+	if (!list2)
+		return list1;
+	struct ListNode* Head = (struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode* head = Head;//head是Head的一份拷贝
+	while (list1 && list2)
 	{
-		k = i;
-		while (i + nums[i] >= k && k < numsSize)
+		if (list1->val > list2->val)
 		{
-			num = k + nums[k];
-			if (num > m)
-			{
-				m = num;
-				ret = k;
-			}
-			k++;
+			head->next = list2;
+			list2 = list2->next;
 		}
-		i = ret;
-		count++;
+		else
+		{
+			head->next = list1;
+			list1 = list1->next;
+		}
+		head = head->next;
 	}
-	if (i + nums[i] + 1 >= numsSize && i < numsSize)
-		count++;
-	return count;
+	if (list1)
+		head->next = list1;
+	if (list2)
+		head->next = list2;
+	return Head->next;
 }
