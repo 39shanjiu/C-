@@ -1507,29 +1507,29 @@
 
 //好像要用哈希表，但是，暴力解法就是爽。。。。
 
-int main()
-{
-	int n = 6498415;
-	int ret = 0;
-	int count = 0;
-	int num = 0;
-	for (int i = 0; i < 10; i++)
-	{
-		while (n > 0)
-		{
-			count = n % 10;
-			num += count * count;
-			n /= 10;
-		}
-		if (num == 1)
-		{
-			printf("%d ", num);
-		}
-		n = num;
-		num = 0;
-	}
-	return 0;
-}
+//int main()
+//{
+//	int n = 6498415;
+//	int ret = 0;
+//	int count = 0;
+//	int num = 0;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		while (n > 0)
+//		{
+//			count = n % 10;
+//			num += count * count;
+//			n /= 10;
+//		}
+//		if (num == 1)
+//		{
+//			printf("%d ", num);
+//		}
+//		n = num;
+//		num = 0;
+//	}
+//	return 0;
+//}
 
 /// <summary>
 
@@ -1649,30 +1649,78 @@ int main()
 //	mergeTwoLists();
 //}
 //不是很懂？？？？？？？？？
-struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
-	if (!list1)
-		return list2;
-	if (!list2)
-		return list1;
-	struct ListNode* Head = (struct ListNode*)malloc(sizeof(struct ListNode));
-	struct ListNode* head = Head;//head是Head的一份拷贝
-	while (list1 && list2)
+//struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+//	if (!list1)
+//		return list2;
+//	if (!list2)
+//		return list1;
+//	struct ListNode* Head = (struct ListNode*)malloc(sizeof(struct ListNode));
+//	struct ListNode* head = Head;//head是Head的一份拷贝
+//	while (list1 && list2)
+//	{
+//		if (list1->val > list2->val)
+//		{
+//			head->next = list2;
+//			list2 = list2->next;
+//		}
+//		else
+//		{
+//			head->next = list1;
+//			list1 = list1->next;
+//		}
+//		head = head->next;
+//	}
+//	if (list1)
+//		head->next = list1;
+//	if (list2)
+//		head->next = list2;
+//	return Head->next;
+//}
+int judy(int* arr, int arrSize)
+{
+	int a = 0, b = 0, c = 0;
+	int i = 0;
+	int arr1[100020] = { 0 }, arr2[100020] = { 0 };
+	for (i = 0; i < arrSize; i++)
 	{
-		if (list1->val > list2->val)
+		if (arr[i] > 0)
 		{
-			head->next = list2;
-			list2 = list2->next;
+			a++;
+			arr1[arr[i]]++;
+		}
+		else if (arr[i] < 0)
+		{
+			b++;
+			arr2[-arr[i]]++;
 		}
 		else
-		{
-			head->next = list1;
-			list1 = list1->next;
-		}
-		head = head->next;
+			c++;
 	}
-	if (list1)
-		head->next = list1;
-	if (list2)
-		head->next = list2;
-	return Head->next;
+	if (a % 2 != 0 && b % 2 != 0 && c % 2 != 0)
+		return 0;
+	for (i = 0; i < 50005; i++)
+	{
+		if (arr1[i] > 0)
+		{
+			if (arr1[i] != arr1[2 * i])
+			{
+				return 0;
+			}
+		}
+		if (arr2[i] > 0)
+		{
+			if (arr2[i] != arr2[2 * i])
+			{
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+int main()
+{
+	int arr[4] = { 2,-2,4,-4 };
+	int ret = judy(arr, 4);
+	printf("%d ", ret);
+	return 0;
 }
