@@ -1676,51 +1676,64 @@
 //		head->next = list2;
 //	return Head->next;
 //}
-int judy(int* arr, int arrSize)
-{
-	int a = 0, b = 0, c = 0;
-	int i = 0;
-	int arr1[100020] = { 0 }, arr2[100020] = { 0 };
-	for (i = 0; i < arrSize; i++)
-	{
-		if (arr[i] > 0)
-		{
-			a++;
-			arr1[arr[i]]++;
-		}
-		else if (arr[i] < 0)
-		{
-			b++;
-			arr2[-arr[i]]++;
-		}
-		else
-			c++;
-	}
-	if (a % 2 != 0 && b % 2 != 0 && c % 2 != 0)
-		return 0;
-	for (i = 0; i < 50005; i++)
-	{
-		if (arr1[i] > 0)
-		{
-			if (arr1[i] != arr1[2 * i])
-			{
-				return 0;
-			}
-		}
-		if (arr2[i] > 0)
-		{
-			if (arr2[i] != arr2[2 * i])
-			{
-				return 0;
-			}
-		}
-	}
-	return 1;
-}
+//int judy(int* arr, int arrSize)
+//{
+//	int a = 0, b = 0, c = 0;
+//	int i = 0;
+//	int arr1[100020] = { 0 }, arr2[100020] = { 0 };
+//	for (i = 0; i < arrSize; i++)
+//	{
+//		if (arr[i] > 0)
+//		{
+//			a++;
+//			arr1[arr[i]]++;
+//		}
+//		else if (arr[i] < 0)
+//		{
+//			b++;
+//			arr2[-arr[i]]++;
+//		}
+//		else
+//			c++;
+//	}
+//	if (a % 2 != 0 && b % 2 != 0 && c % 2 != 0)
+//		return 0;
+//	for (i = 0; i < 50005; i++)
+//	{
+//		if (arr1[i] > 0)
+//		{
+//			if (arr1[i] != arr1[2 * i])
+//			{
+//				return 0;
+//			}
+//		}
+//		if (arr2[i] > 0)
+//		{
+//			if (arr2[i] != arr2[2 * i])
+//			{
+//				return 0;
+//			}
+//		}
+//	}
+//	return 1;
+//}
+//int main()
+//{
+//	int arr[4] = { 2,-2,4,-4 };
+//	int ret = judy(arr, 4);
+//	printf("%d ", ret);
+//	return 0;
+//}
 int main()
 {
-	int arr[4] = { 2,-2,4,-4 };
-	int ret = judy(arr, 4);
-	printf("%d ", ret);
+	int arr[3][2] = { {22,33},{37,27},{67,15} };
+	double x1,x2,y1,y2,a,b;
+	x1 = (double)arr[0][0];
+	x2 = (double)arr[1][0];
+	y1 = (double)arr[0][1];
+	y2 = (double)arr[1][1];
+	a =  (y1 - y2) / (x1 - x2);
+	b = y1 - a * x1;
+		printf("%f",a);
 	return 0;
 }
