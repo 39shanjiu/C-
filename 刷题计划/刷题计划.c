@@ -1724,7 +1724,7 @@
 //	printf("%d ", ret);
 //	return 0;
 //}
-int main()
+i/*nt main()
 {
 	int arr[3][2] = { {22,33},{37,27},{67,15} };
 	double x1,x2,y1,y2,a,b;
@@ -1735,5 +1735,21 @@ int main()
 	a =  (y1 - y2) / (x1 - x2);
 	b = y1 - a * x1;
 		printf("%f",a);
-	return 0;
+	return 0;*/
+
+	har nextGreatestLetter(char* letters, int lettersSize, char target) {
+	int left = 0, right = lettersSize - 1;//l 0,r 2
+	int mid;
+	while (left < right)//0 < 2;0 < 1
+	{
+		mid = (left + right) / 2;//m = 1;// m = 0
+		if (letters[mid] > target)//f > c
+			right = mid; //r = 1
+		else
+			left = mid + 1;//l =      
+	}
+	if (letters[lettersSize - 1] <= target)
+		return letters[0];
+	else
+		return letters[left];
 }
