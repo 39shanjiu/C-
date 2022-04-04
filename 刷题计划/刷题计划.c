@@ -1724,7 +1724,7 @@
 //	printf("%d ", ret);
 //	return 0;
 //}
-i/*nt main()
+/*nt main()
 {
 	int arr[3][2] = { {22,33},{37,27},{67,15} };
 	double x1,x2,y1,y2,a,b;
@@ -1736,20 +1736,159 @@ i/*nt main()
 	b = y1 - a * x1;
 		printf("%f",a);
 	return 0;*/
+//
+//	har nextGreatestLetter(char* letters, int lettersSize, char target) {
+//	int left = 0, right = lettersSize - 1;//l 0,r 2
+//	int mid;
+//	while (left < right)//0 < 2;0 < 1
+//	{
+//		mid = (left + right) / 2;//m = 1;// m = 0
+//		if (letters[mid] > target)//f > c
+//			right = mid; //r = 1
+//		else
+//			left = mid + 1;//l =      
+//	}
+//	if (letters[lettersSize - 1] <= target)
+//		return letters[0];
+//	else
+//		return letters[left];
+//}
+//
+//#include <stdio.h>
+//
+//int main()
+//{
+//	char a = '2';
+//	int b = (a - 48);
+//	printf("%d",b);
+//	return 0;
+//}
+//int main()
+//{
+//	char num1[1] = "3";
+//	char num2[1] = "2";
+//
+//	int sz1, sz2;
+//	sz1 = strlen(num1);
+//	sz2 = strlen(num2);
+//	int a = 0, b = 0;
+//	int i = 0;
+//	for (i = 0; i < sz1; i++)
+//	{
+//		a += (int)((int)(num1[i] - 48) * pow(10, sz1 - 1));
+//	}
+//	for (i = 0; i < sz2; i++)
+//	{
+//		b += (int)((int)(num2[i] - 48) * pow(10, sz2 - 1));
+//	}
+//	int sum = a * b;
+//	int ret = sum, count = 0;
+//	while (sum)
+//	{
+//		count++;
+//		sum /= 10;
+//	}
+//	char arr[count];
+//	for (i = 0; i < count; i++)
+//	{
+//		arr[i] = (char)(ret / (count - i) + 48);
+//	}
+//	return arr;
+//}
 
-	har nextGreatestLetter(char* letters, int lettersSize, char target) {
-	int left = 0, right = lettersSize - 1;//l 0,r 2
-	int mid;
-	while (left < right)//0 < 2;0 < 1
+//char* multiply(char* num1, char* num2)
+//{
+//	int length1 = strlen(num1);//计算长度
+//	int length2 = strlen(num2);
+//	int totalLength = length1 + length2;//                     //获取相乘后字符串的总有效位数
+//
+//	int charIndex = 0;//？？？                                       //定义负责索引字段
+//	int valueIndex = 0;//？？？
+//
+//	int* value = (int*)malloc(sizeof(int) * totalLength);//用指针来代替数组，学到了
+//	memset(value, 0, sizeof(int) * totalLength);//赋值函数，忘记了。
+//
+//	char* result = (char*)malloc(sizeof(char) * (totalLength + 1));//这是要返回的指针。
+//
+//
+//	for (int i = length1 - 1; i >= 0; i--)
+//	{
+//		for (int j = length2 - 1; j >= 0; j--)
+//		{
+//			value[i + j + 1] += (num1[i] - '0') * (num2[j] - '0');//这是指针，每一位都是一个int整形，
+//			//这里还解决了不同位的10的系数问题，妙啊。
+//		}
+//	}
+//
+//	for (int i = totalLength - 1; i > 0; i--)                 //获取每个位置上面的数字并处理进位
+//  	{
+//		value[i - 1] += value[i] / 10;//进位操作。这里最大为9*9 + 9=90，所以一次就好（错的），不一定，有好多位都有加。这里超过10的都要进位。
+//		value[i] %= 10;//保留个位数。
+//	}
+//
+//
+//
+//	while (value[valueIndex] == 0 && valueIndex < totalLength - 1)
+//	{
+//		valueIndex++;//前面value是从最后一位开始计数，所以前面会有空置0                                        //忽略掉前面多余的0，但是最高位也就是唯一的一位0不能忽略
+//	}
+//	while (valueIndex < totalLength)
+//	{
+//		result[charIndex++] = value[valueIndex++] + '0';//开始向字符数字转化。
+//	}
+//
+//	result[charIndex] = '\0'; //最后一位补上\0终止计算。                               //默认补上字符串的终止符
+//
+//
+//}
+char* multiply(char* num1, char* num2)
+{
+	int i, k, sz1, sz2;
+	sz1 = strlen(num1);
+	sz2 = strlen(num2);
+	/*if(num1[0] == '0' || num2[0] == '0')
 	{
-		mid = (left + right) / 2;//m = 1;// m = 0
-		if (letters[mid] > target)//f > c
-			right = mid; //r = 1
-		else
-			left = mid + 1;//l =      
+		num1[0] = '0';
+		return num1;
+	}*/
+	int sz = sz1 + sz2;
+	int* num = (int*)malloc(sizeof(int*) * sz);
+	char* Return = (char*)malloc(sizeof(char*) * (sz + 1));//这里+1是为了后面加'\0'
+	memset(num, 0, sizeof(int*) * sz);//将这里的空间全部赋值为0
+	for (i = sz1 - 1; i >= 0; i--)
+	{
+		for (k = sz2 - 1; k >= 0; k--)
+		{
+			num[i + k + 1] += (num1[i] - '0') * (num2[k] - '0');//这是重点
+			//将这个问题最复杂的部分解决的很轻松。要好好学学啊。
+			//这里解决了不同10的系数问题，它这里相当于没有进行进位操作
+			//而是把这些全放在后面。
+		}
 	}
-	if (letters[lettersSize - 1] <= target)
-		return letters[0];
-	else
-		return letters[left];
+	i = sz - 1;
+	for (i = sz - 1; i > 0; i--)//进位操作
+	{
+		num[i - 1] += num[i] / 10;//进完以后进的位大于10！没关系，后面再来，反正你不可能大过sz1 + sz2,
+		//有的位是给你进。
+		num[i] = num[i] % 10;
+	}
+	int n = 0, m = 0;
+	while (num[n] == 0 && n < sz - 1)//为什么这里n最大是sz - 2呢，为了防止两个数中有0这个数，以免误伤。
+	{
+		n++;
+	}
+	while (n < sz)
+	{
+		Return[m++] = (char)(num[n++] + '0');
+	}
+	Return[m] = '\0';
+
+	return Return;
+}
+int main()
+{
+	char num1 = "213";
+	char num2 = "2341";
+	multiply( num1,  num2);
+	return 0;
 }
