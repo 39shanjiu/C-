@@ -1838,7 +1838,7 @@
 //	}
 //
 //	result[charIndex] = '\0'; //最后一位补上\0终止计算。                               //默认补上字符串的终止符
-//
+//xxxxxxxxxxx
 //
 //}
 char* multiply(char* num1, char* num2)
