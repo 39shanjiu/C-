@@ -6,19 +6,19 @@
 	/*int i = 0;
 	int k = 0;
 	for (k = 0; k < N; k++)
-	{
+	{xxxxxxxxxxxxxxxxx
 		for (i = 0; i < N - 1; i++)
 		{
 			if (arr[i] > arr[i + 1])
 			{
 				int ret = arr[i];
-				arr[i] = arr[i + 1];xxxxxx
+				arr[i] = arr[i + 1];xxxxxxxc
 				arr[i + 1] = ret;xxxxxx
 			}
 		}*/
 	//}
-//
-//}
+//xxxxxxxxxxx
+//}xxxxxxxxx
 //void My(int arr[], int N)
 //{
 //	int i = 0;
@@ -1841,54 +1841,73 @@
 //xxxxxxxxxxx
 //
 //}
-char* multiply(char* num1, char* num2)
-{
-	int i, k, sz1, sz2;
-	sz1 = strlen(num1);
-	sz2 = strlen(num2);
-	/*if(num1[0] == '0' || num2[0] == '0')
-	{
-		num1[0] = '0';
-		return num1;
-	}*/
-	int sz = sz1 + sz2;
-	int* num = (int*)malloc(sizeof(int*) * sz);
-	char* Return = (char*)malloc(sizeof(char*) * (sz + 1));//这里+1是为了后面加'\0'
-	memset(num, 0, sizeof(int*) * sz);//将这里的空间全部赋值为0
-	for (i = sz1 - 1; i >= 0; i--)
-	{
-		for (k = sz2 - 1; k >= 0; k--)
-		{
-			num[i + k + 1] += (num1[i] - '0') * (num2[k] - '0');//这是重点
-			//将这个问题最复杂的部分解决的很轻松。要好好学学啊。
-			//这里解决了不同10的系数问题，它这里相当于没有进行进位操作
-			//而是把这些全放在后面。
-		}
-	}
-	i = sz - 1;
-	for (i = sz - 1; i > 0; i--)//进位操作
-	{
-		num[i - 1] += num[i] / 10;//进完以后进的位大于10！没关系，后面再来，反正你不可能大过sz1 + sz2,
-		//有的位是给你进。
-		num[i] = num[i] % 10;
-	}
-	int n = 0, m = 0;
-	while (num[n] == 0 && n < sz - 1)//为什么这里n最大是sz - 2呢，为了防止两个数中有0这个数，以免误伤。
-	{
-		n++;
-	}
-	while (n < sz)
-	{
-		Return[m++] = (char)(num[n++] + '0');
-	}
-	Return[m] = '\0';
-
-	return Return;
-}
+//char* multiply(char* num1, char* num2)
+//{
+//	int i, k, sz1, sz2;
+//	sz1 = strlen(num1);
+//	sz2 = strlen(num2);
+//	/*if(num1[0] == '0' || num2[0] == '0')
+//	{
+//		num1[0] = '0';
+//		return num1;
+//	}*/
+//	int sz = sz1 + sz2;
+//	int* num = (int*)malloc(sizeof(int*) * sz);
+//	char* Return = (char*)malloc(sizeof(char*) * (sz + 1));//这里+1是为了后面加'\0'
+//	memset(num, 0, sizeof(int*) * sz);//将这里的空间全部赋值为0
+//	for (i = sz1 - 1; i >= 0; i--)
+//	{
+//		for (k = sz2 - 1; k >= 0; k--)
+//		{
+//			num[i + k + 1] += (num1[i] - '0') * (num2[k] - '0');//这是重点
+//			//将这个问题最复杂的部分解决的很轻松。要好好学学啊。
+//			//这里解决了不同10的系数问题，它这里相当于没有进行进位操作
+//			//而是把这些全放在后面。
+//		}
+//	}
+//	i = sz - 1;
+//	for (i = sz - 1; i > 0; i--)//进位操作
+//	{
+//		num[i - 1] += num[i] / 10;//进完以后进的位大于10！没关系，后面再来，反正你不可能大过sz1 + sz2,
+//		//有的位是给你进。
+//		num[i] = num[i] % 10;
+//	}
+//	int n = 0, m = 0;
+//	while (num[n] == 0 && n < sz - 1)//为什么这里n最大是sz - 2呢，为了防止两个数中有0这个数，以免误伤。
+//	{
+//		n++;
+//	}
+//	while (n < sz)
+//	{
+//		Return[m++] = (char)(num[n++] + '0');
+//	}
+//	Return[m] = '\0';
+//
+//	return Return;
+////}
+//int main()
+//{
+//	char num1 = "213";
+//	char num2 = "2341";
+//	multiply( num1,  num2);
+//	return 0;
+//}
 int main()
 {
-	char num1 = "213";
-	char num2 = "2341";
-	multiply( num1,  num2);
+	int i, c = 0, num = 0, count = 0;
+	for (i = 6; i <= 10; i++)
+	{
+		int ret = i;
+		while (ret)
+		{
+			if (ret % 2 == 1)
+				c++;
+			ret /= 2;
+		}
+		if (c == 3 || c == 2 || c == 5 || c == 7 || c == 11 || c == 13 ||
+			c == 17 || c == 19 || c == 23 || c == 29 || c == 31)
+			count++;
+	}
+	printf("%d ", count);
 	return 0;
 }
