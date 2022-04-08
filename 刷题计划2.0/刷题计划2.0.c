@@ -22,10 +22,10 @@
 #include <string.h>
 #include <stdlib.h>
 //
-int comp(const void* e1,const void* e2)
-{
-	return (*(int*)e1 - *(int*)e2);
-}
+//int comp(const void* e1,const void* e2)
+//{
+//	return (*(int*)e1 - *(int*)e2);
+//}
 //int main()
 //{
 //	int num[] = { 2,5,9,6,31,4,8,2,35,6 };
@@ -153,58 +153,241 @@ int comp(const void* e1,const void* e2)
 //        if (arr[i] == 0)
 //            continue;
 //        count += (arr[i] * (
-
-struct ListNode
-{
-    int val;
-    struct ListNode* next;
-};
-
+//
+//struct ListNode
+//{
+//    int val;
+//    struct ListNode* next;
+//};
+//
+//
+//
+////
+////结构体指针和普通指针真不一样
+////因为结构体指针可以l -> val
+//
+//struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
+//    struct ListNode* head = (struct ListNode*)malloc(sizeof(struct ListNode)), *t = head;//这里很怪，看不懂
+//    //*t是个结构体指针，它存放了结构体head的地址，但是head的指针域放的谁？
+//    //*t本是一个指针，但是它可以解引用t->（->有解引用的作用）这样t通过地址找到了head
+//    while (l1 && l2)//
+//    {
+//        if (l1->val > l2->val)
+//        {
+//            t->next = l2;//在这里t->next是t解引用找到了head，所以这里相当于head.next.
+//            //这也就是为什么最后返回的是head。
+//            l2 = l2->next;//l2本身也是个指针，这里相当于l2(指针) = l2.next.
+//        }
+//        else
+//        {
+//            t->next = l1;
+//            l1 = l1->next;
+//        }
+//        t = t->next;
+//    }
+//    if (l1 == NULL)
+//        t->next = l2;
+//    else
+//        t->next = l1;
+//    return head->next;
+//    //为什么这里返回的是head->next
+//    //即为什么head->next表示的是表头
+//    //结构体指针是什么，结构体指针就和int指针一样，它只是这些类型的指针而已
+//    //本质存放的还是地址，只不过结构体指针找寻地址的方法不一样。
+//    //所以在这t自始至终都是存放的地址。
+//    //这里主要的问题是head本身也是个指针
+//    //t在移动，每次移动它的t->next都会改变当前节点的指针域。
+//}
+//
+//
+//int main()
+//{
+//    struct ListNode* l1;
+//    struct ListNode* l2;
+//
+//    mergeTwoLists(l1, l2);
+//    return 0;
+//}
+//
+//int main()
+//{
+//    char arr1[] = "abcd";
+//    char arr2[] = "efg";
+//    strcpy_s(arr2,3,arr2);
+//    int n = 0;
+//
+//    return 0;
+//}
+//
+//int main()
+//{
+//    char arr[201] = { '\0' };
+//    char goal[] = "bbbacddceeb";
+//    char s[] = "ceebbbbacdd";
+//    int s1 = strlen(s);
+//    int s2 = strlen(goal);
+//    if (s1 != s2)
+//        printf("false");
+//    strcpy_s(arr, 32,goal);
+//    strcpy_s(arr + s2,32, goal);
+//    int i, k = 0;
+//    for (i = 0; i <= 2 * s2; i++)
+//    {
+//        if (arr[i] == s[k])
+//            k++;
+//        else
+//            k = 0;
+//        if (k + 1 == s2)
+//            printf("true");
+//    }
+//    return 0;
+//}
+//
+//void Get_Next(char* s, char* next, int sz)
+//{
+//    int i = 0;
+//    int k = 0;
+//    next[0] = 0;
+//    next[1] = 1;
+//    for (i = 2; i < sz; i++)
+//    {
+//        if (k == 0 && s[k] != s[i - 1])
+//        {
+//            k++;
+//            next[i] = 1;
+//        }
+//        else if (s[i - 1] == s[k])
+//        {
+//            k++;
+//            next[i] = k + 1;
+//        }
+//        else
+//        {
+//            k = 0;
+//            i--;
+//        }
+//    }
+//}
+//int rotateString(char* s, char* goal) {
+//    int s1 = strlen(s);
+//    int s2 = strlen(goal);
+//    /*if (s1 != s2)
+//        return 0;*/
+//    char arr[24] = { '\0' };
+//    strcpy_s(arr,12, goal);
+//    strcpy_s(arr + s2,12, goal);
+//    char next[11] = { '\0' };
+//    //Get_Next(s, next, s1);
+//    int i = 0;
+//    int k = 0;
+//    next[0] = 0;
+//    next[1] = 1;
+//    for (i = 2; i < s1; i++)
+//    {
+//        if (k == 0 && s[i - 1] != s[k])
+//        {
+//            next[i] = 1;
+//        }
+//        else if (s[i - 1] == s[k])
+//        {
+//            k++;
+//            next[i] = k + 1;
+//        }
+//        else
+//        {
+//            k = 0;
+//            i--;
+//        }
+//    }
+//    //Get_Nextval(next,s,s1);
+//    k = 0;
+//    for (i = 0; i < (2*s2); i++)
+//    {
+//        if (k == 0 || arr[i] == s[k])
+//        {
+//            k++;
+//        }
+//        else 
+//        {
+//            k = next[k - 1];
+//            i--;
+//        }
+//        if (k == s2)
+//            return 1;
+//    }
+//    return 0;
+//}
+//int main()
+//{
+//    char goal[] = "bbbacddceeb";
+//    char s[] = "ceebbbbacdd";
+//    int k = rotateString(s, goal);
+//    return 0;
+//}
 
 
 //
-//结构体指针和普通指针真不一样
-//因为结构体指针可以l -> val
-
-struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
-    struct ListNode* head = (struct ListNode*)malloc(sizeof(struct ListNode)), *t = head;//这里很怪，看不懂
-    //*t是个结构体指针，它存放了结构体head的地址，但是head的指针域放的谁？
-    //*t本是一个指针，但是它可以解引用t->（->有解引用的作用）这样t通过地址找到了head
-    while (l1 && l2)//
-    {
-        if (l1->val > l2->val)
-        {
-            t->next = l2;//在这里t->next是t解引用找到了head，所以这里相当于head.next.
-            //这也就是为什么最后返回的是head。
-            l2 = l2->next;//l2本身也是个指针，这里相当于l2(指针) = l2.next.
-        }
-        else
-        {
-            t->next = l1;
-            l1 = l1->next;
-        }
-        t = t->next;
-    }
-    if (l1 == NULL)
-        t->next = l2;
-    else
-        t->next = l1;
-    return head->next;
-    //为什么这里返回的是head->next
-    //即为什么head->next表示的是表头
-    //结构体指针是什么，结构体指针就和int指针一样，它只是这些类型的指针而已
-    //本质存放的还是地址，只不过结构体指针找寻地址的方法不一样。
-    //所以在这t自始至终都是存放的地址。
-    //这里主要的问题是head本身也是个指针
-    //t在移动，每次移动它的t->next都会改变当前节点的指针域。
-}
-
-
-int main()
-{
-    struct ListNode* l1;
-    struct ListNode* l2;
-
-    mergeTwoLists(l1, l2);
-    return 0;
-}
+//void Get_comp(struct TreeNode* p, int num1, struct TreeNode* q, int num2, int* num)
+//{
+//    if (p == NULL && q != NULL)
+//    {
+//        *num = 0;
+//        return;
+//    }
+//    if (p != NULL && q == NULL)
+//    {
+//        *num = 0;
+//        return;
+//    }
+//    if (num1 != num2)
+//    {
+//        *num = 0;
+//        return;
+//    }
+//    if (p == NULL && q == NULL)
+//        return;
+//    Get_comp(p->left, p->val, q->right, q->val, num);
+//    Get_comp(p->right, p->val, q->left, q->val, num);
+//}
+//bool isSymmetric(struct TreeNode* root) {
+//
+//    int num = 1;
+//    struct TreeNode* p = root->left;
+//    struct TreeNode* q = root->right;
+//
+//    if (p == NULL && q != NULL)
+//    {
+//        return 0;
+//    }
+//    if (p != NULL && q == NULL)
+//    {
+//        return 0;
+//    }
+//    if (p == NULL && q == NULL)
+//    {
+//        return 1;
+//    }
+//    Get_comp(p, p->val, q, q->val, &num);
+//    return num;
+//
+//}
+//
+//
+//
+//void Get_val(struct TreeNode* node, int num, int* count, int* sum)
+//{
+//    if (node)
+//        (*count)++;
+//    else
+//        return;
+//    if (num == node->val)
+//        (*sum)++;
+//    Get_val(node->left, num, count, sum);
+//    Get_val(node->right, num, count, sum);
+//}
+//
+//bool isUnivalTree(struct TreeNode* root) {
+//    int count = 0, sum = 0;
+//    Get_val(root, root->val, &count, &sum);
+//    return count == sum;
+//}
