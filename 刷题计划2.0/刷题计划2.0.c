@@ -391,3 +391,302 @@
 //    Get_val(root, root->val, &count, &sum);
 //    return count == sum;
 //}
+
+
+
+
+
+
+
+
+/*
+ksjnch hkas*/ 
+//
+//int ForUnom(int n, int count)
+//{
+//    count = 0;
+//    if (n >= 2)
+//    {
+//        int num = n;
+//        count = 9;
+//        int sum = 9;
+//        while (num > 1)
+//        {
+//            count *= sum;
+//            sum--;
+//            num--;
+//        }
+//        count += ForUnom(n - 1, count);
+//    }
+//    return count;
+//}
+
+//int main()
+//{
+//    int n = 4;
+//    int i = 0;
+//    int count = 0;
+//    count = ForUnom(n, count);
+//    count += 10;
+//    printf("%d ", count);
+//    return 0;
+//}
+//
+//int ForUnom(int n, int count)
+//{
+//    count = 0;
+//    if (n >= 2)
+//    {
+//        int num = n;
+//        count = 9;
+//        int sum = 9;
+//        while (num > 1)
+//        {
+//            count *= sum;
+//            sum--;
+//            num--;
+//        }
+//        count += ForUnom(n - 1, count);
+//    }
+//    return count;
+//}
+//
+//int BP(int tm, int su)
+//{
+//    int count = 0;
+//    if (tm > 1)
+//    {
+//        count = 9;
+//        while (--su)
+//        {
+//            int sum = 8;
+//            count *= sum;
+//            sum--;
+//        }
+//        count *= (tm - 1);
+//        return (count += ForUnom(su, count));
+//    }  
+//}
+//
+//
+//int main()
+//{
+//    int n = 9999;
+//    int nn = n;
+//    int num = nn;
+//    int tm;
+//    int su = 0;
+//    while (num)
+//    {
+//        tm = num % 10;
+//        num /= 10;
+//        su++;
+//    }
+//    int count = 0;
+//    int i = 0;
+//    for (i = 1; i <= tm; i++)
+//    {
+//        if (i == 1)
+//            count += ForUnom(su + 1, count);
+//        else
+ /*           count += BP(i, su);
+    }
+    return 0;
+}*/
+//
+//
+//int main()
+//{
+//    int n = 9999;
+//    int nn = n;
+//    int sum = 0;//记录是第几次递推。
+//    while (nn)//每次递推首位
+//    {
+//        int nnnn = nn;//用做判断递推时前面与后面的关系
+//        int nnn = nn;//nnn每次用作数据处理
+//        int tm;//记录最高位
+//        int su = 0;//记录tm是10的几次方。 
+//        //实现部分
+//        while (nnn)
+//        {
+//            tm = nnn % 10;
+//            nnn /= 10;
+//            su++;
+//        }
+//        if (sum != 0)
+//        {
+//            int sumx = sum;
+//            while()
+//
+//        }
+//
+//        //实现nn的递推。 
+//
+//
+//
+//    }
+//    return 0;
+//}
+
+//
+//int main()
+//{
+//    int n = 9999;
+//    int i = 0;
+//    int su = 10;
+//    for (i = n; i > 0; i--)
+//    {
+//        if (i % su == 0)
+//        {
+//
+//        }
+//    }
+//    return 0;
+//}
+
+
+int ForUnom(int n, int count)
+{
+    count = 0;
+    if (n >= 2)
+    {
+        int num = n;
+        count = 9;
+        int sum = 9;
+        while (num > 1)
+        {
+            count *= sum;
+            sum--;
+            num--;
+        }
+        count += ForUnom(n - 1, count);
+    }
+    return count;
+}
+
+int BPOneself(int num)
+{
+    int count = 0;
+    while (num > 10)
+    {
+        int s1 = num % 10;
+        int s2 = num / 10;
+        while (s2)
+        {
+            int s3 = s2 % 10;
+            if (s1 == s3)
+                count = 1;
+            s2 /= 10;
+        }
+        num /= 10;
+    }
+    return count;
+}
+
+
+
+int Suoha(int n,int su,int suuu)
+{
+    n /= su;
+    int count = 1;
+    if (n > 1)
+    {       
+        int sum = 9;
+        int suu = su;
+        while (suu > 1)
+        {
+            count *= sum--;
+            suu /= 10;
+
+        }
+        if (n != 1)
+            count *= (n - 1);
+        n = 1;       
+    }  
+    if (n == 1)
+    {
+        count += ForUnom(suuu, count);
+    }
+    return count;
+}
+
+int main()
+{
+    int n = 949000000;
+    int i = 0;
+    int count = 0;
+    int su = 1;
+    int nn = n / 10;
+    int suu = 0;
+    while (nn)
+    {
+        nn /= 10;
+        su *= 10;
+        suu++;
+    }
+    if (n > 100000000)
+    {
+        while(n > 100000000)
+        {
+            if (n % 10000000 == 0)//8
+            {
+                int num = n / 10000000;//7
+                num %= 10;
+                int num2 = n / 100000000;//8
+                int sum = 0;
+                if (num <= num2 && num != 1)
+                {
+                    sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+                }
+                else if (num > num2 && num > 2)
+                    sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+                else if (num > num2)
+                    sum = 0;
+                count += (((num - 1) * 10000000) - sum);
+               n -= (num - 1) * 10000000;
+                break;
+            }
+
+            int flag = BPOneself(i);
+            if (flag == 1)
+                count++;
+            n--;
+        }
+    }
+    for (i = n; i > 10; i--)
+    {
+        if (i > 100000000 && i % 10000000 == 0)//8
+        {
+            int num = i / 10000000;//7
+            num %= 10;
+            int num2 = i / 100000000;//8
+            int sum = 0;
+            if (num <= num2 && num != 1)
+            {
+                sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+            }
+            else if (num > num2 && num > 2)
+                sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+            else if (num > num2)
+                sum = 0;
+            count += (((num - 1) * 10000000) - sum);
+            i -= (num - 1) * 10000000;
+        }
+        if (i % su == 0 && i > 100)
+        {
+           int b = Suoha(i,su,suu);
+           count += (i - b) -9;
+           if (i == su)
+               count++;
+           break;
+        }
+        else
+        {
+            int flag = BPOneself(i);
+            if (flag == 1)
+                count++;
+        }
+    }
+    printf("%d ", count);
+    return 0;
+}
