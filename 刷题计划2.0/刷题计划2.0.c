@@ -543,150 +543,252 @@ ksjnch hkas*/
 //    }
 //    return 0;
 //}
+//
+//
+//int ForUnom(int n, int count)
+//{
+//    count = 0;
+//    if (n >= 2)
+//    {
+//        int num = n;
+//        count = 9;
+//        int sum = 9;
+//        while (num > 1)
+//        {
+//            count *= sum;
+//            sum--;
+//            num--;
+//        }
+//        count += ForUnom(n - 1, count);
+//    }
+//    return count;
+//}
+//
+//int BPOneself(int num)
+//{
+//    int count = 0;
+//    while (num > 10)
+//    {
+//        int s1 = num % 10;
+//        int s2 = num / 10;
+//        while (s2)
+//        {
+//            int s3 = s2 % 10;
+//            if (s1 == s3)
+//                count = 1;
+//            s2 /= 10;
+//        }
+//        num /= 10;
+//    }
+//    return count;
+//}
+//
+//
+//
+//int Suoha(int n,int su,int suuu)
+//{
+//    n /= su;
+//    int count = 1;
+//    if (n > 1)
+//    {       
+//        int sum = 9;
+//        int suu = su;
+//        while (suu > 1)
+//        {
+//            count *= sum--;
+//            suu /= 10;
+//
+//        }
+//        if (n != 1)
+//            count *= (n - 1);
+//        n = 1;       
+//    }  
+//    if (n == 1)
+//    {
+//        count += ForUnom(suuu, count);
+//    }
+//    return count;
+//}
+//
+//int main()
+//{
+//    int n = 949000000;
+//    int i = 0;
+//    int count = 0;
+//    int su = 1;
+//    int nn = n / 10;
+//    int suu = 0;
+//    while (nn)
+//    {
+//        nn /= 10;
+//        su *= 10;
+//        suu++;
+//    }
+//    if (n > 100000000)
+//    {
+//        while(n > 100000000)
+//        {
+//            if (n % 10000000 == 0)//8
+//            {
+//                int num = n / 10000000;//7
+//                num %= 10;
+//                int num2 = n / 100000000;//8
+//                int sum = 0;
+//                if (num <= num2 && num != 1)
+//                {
+//                    sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+//                }
+//                else if (num > num2 && num > 2)
+//                    sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+//                else if (num > num2)
+//                    sum = 0;
+//                count += (((num - 1) * 10000000) - sum);
+//               n -= (num - 1) * 10000000;
+//                break;
+//            }
+//
+//            int flag = BPOneself(i);
+//            if (flag == 1)
+//                count++;
+//            n--;
+//        }
+//    }
+//    for (i = n; i > 10; i--)
+//    {
+//        if (i > 100000000 && i % 10000000 == 0)//8
+//        {
+//            int num = i / 10000000;//7
+//            num %= 10;
+//            int num2 = i / 100000000;//8
+//            int sum = 0;
+//            if (num <= num2 && num != 1)
+//            {
+//                sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+//            }
+//            else if (num > num2 && num > 2)
+//                sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
+//            else if (num > num2)
+//                sum = 0;
+//            count += (((num - 1) * 10000000) - sum);
+//            i -= (num - 1) * 10000000;
+//        }
+//        if (i % su == 0 && i > 100)
+//        {
+//           int b = Suoha(i,su,suu);
+//           count += (i - b) -9;
+//           if (i == su)
+//               count++;
+//           break;
+//        }
+//        else
+//        {
+//            int flag = BPOneself(i);
+//            if (flag == 1)
+//                count++;
+//        }
+//    }
+//    printf("%d ", count);
+//    return 0;
+//}
 
 
-int ForUnom(int n, int count)
-{
-    count = 0;
-    if (n >= 2)
+//int main()
+//{
+//    int M, S, T;
+//    scanf_s("%d%d%d", &M, &S, &T);
+//    int t = T;
+//    int s = S;
+//    while (M >= 2 && T > 0 && S > 34)
+//    {
+//        if (S <= 51 && M <= 6)
+//        {
+//            break;
+//        }
+//        if (M >= 10)
+//        {
+//            T--;
+//            S -= 60;
+//            M -= 10;
+//        }
+//        else
+//        {
+//            T--;
+//            M += 4;
+//        }
+//    }
+//    if (T > 0 && S > 0)
+//    {
+//        int count = 0;
+//        for (T; T > 0; T--)
+//        {
+//            if (S > 0)
+//            {
+//                S -= 17;
+//                count++;
+//                if (count == 7)
+//                {
+//                    S -= 1;
+//                    count = 0;
+//                }
+//            }
+//            else
+//                break;
+//       }
+//    }
+//    if (T >= 0 && S <= 0)
+//    {
+//        printf("Yes\n%d", t - T);
+//    }
+//    else if (S > 0)
+//    {
+//        printf("No\n%d", s - S);
+//    }
+//    
+//
+//
+//    return 0;
+   /* while (T && S)
     {
-        int num = n;
-        count = 9;
-        int sum = 9;
-        while (num > 1)
+        if (M >= 10)
         {
-            count *= sum;
-            sum--;
-            num--;
+            S -= 60;
+            T--;
         }
-        count += ForUnom(n - 1, count);
-    }
-    return count;
-}
-
-int BPOneself(int num)
-{
-    int count = 0;
-    while (num > 10)
-    {
-        int s1 = num % 10;
-        int s2 = num / 10;
-        while (s2)
+        else if (M < 2 && S >= 120)
         {
-            int s3 = s2 % 10;
-            if (s1 == s3)
-                count = 1;
-            s2 /= 10;
+            T -= 7;
+            S -= 120;
         }
-        num /= 10;
-    }
-    return count;
-}
-
-
-
-int Suoha(int n,int su,int suuu)
-{
-    n /= su;
-    int count = 1;
-    if (n > 1)
-    {       
-        int sum = 9;
-        int suu = su;
-        while (suu > 1)
+        else if (S >= 51 && M >= 2 && M < 6)
         {
-            count *= sum--;
-            suu /= 10;
-
+            T -= 3;
+            S -= 60;
+            M -= 2;
         }
-        if (n != 1)
-            count *= (n - 1);
-        n = 1;       
-    }  
-    if (n == 1)
-    {
-        count += ForUnom(suuu, count);
-    }
-    return count;
-}
-
+        else if (S > 34 && M >= 6)
+        {
+            T -= 2;
+            S -= 60;
+            M -= 6;
+        }
+    }*/
+    
+ 
 int main()
 {
-    int n = 949000000;
+    int N;
+    scanf_s("%d", &N);
     int i = 0;
-    int count = 0;
-    int su = 1;
-    int nn = n / 10;
-    int suu = 0;
-    while (nn)
+    int num = 1;
+    for (i = 1; i <= N; i++)
     {
-        nn /= 10;
-        su *= 10;
-        suu++;
+        if (i % 10 == 0)
+            continue;
+        num *= (i % 10);
+        if (num % 10 == 0)
+            num /= 10;
+        num %= 100000000;
     }
-    if (n > 100000000)
-    {
-        while(n > 100000000)
-        {
-            if (n % 10000000 == 0)//8
-            {
-                int num = n / 10000000;//7
-                num %= 10;
-                int num2 = n / 100000000;//8
-                int sum = 0;
-                if (num <= num2 && num != 1)
-                {
-                    sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
-                }
-                else if (num > num2 && num > 2)
-                    sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
-                else if (num > num2)
-                    sum = 0;
-                count += (((num - 1) * 10000000) - sum);
-               n -= (num - 1) * 10000000;
-                break;
-            }
-
-            int flag = BPOneself(i);
-            if (flag == 1)
-                count++;
-            n--;
-        }
-    }
-    for (i = n; i > 10; i--)
-    {
-        if (i > 100000000 && i % 10000000 == 0)//8
-        {
-            int num = i / 10000000;//7
-            num %= 10;
-            int num2 = i / 100000000;//8
-            int sum = 0;
-            if (num <= num2 && num != 1)
-            {
-                sum = (num - 1) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
-            }
-            else if (num > num2 && num > 2)
-                sum = (num - 2) * 8 * 7 * 6 * 5 * 4 * 3 * 2;
-            else if (num > num2)
-                sum = 0;
-            count += (((num - 1) * 10000000) - sum);
-            i -= (num - 1) * 10000000;
-        }
-        if (i % su == 0 && i > 100)
-        {
-           int b = Suoha(i,su,suu);
-           count += (i - b) -9;
-           if (i == su)
-               count++;
-           break;
-        }
-        else
-        {
-            int flag = BPOneself(i);
-            if (flag == 1)
-                count++;
-        }
-    }
-    printf("%d ", count);
+    printf("%d", num % 10);
     return 0;
 }
