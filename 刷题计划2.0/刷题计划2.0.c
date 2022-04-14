@@ -870,34 +870,39 @@ int main()
 //    return 0;
 //}
 
+//int main()
+//{
+//    int N = 0;
+//    scanf_s("%d", &N);
+//    int arr1[5005] = { 0 };
+//    int i = 0;
+//    while (i < N)
+//    {
+//        int k = 0;
+//        scanf_s("%d", &k);
+//        arr1[i++] = k;
+//    }
+//    int k = N;
+//    while (k)
+//    {
+//        int arr2[5005] = { 0 };
+//        for (i = 0; i < N; i++)
+//        {
+//            arr2[arr1[i] % k]++;
+//            if (arr2[arr1[i] % k] == 2)
+//                break;
+//        }
+//        if (i == N)
+//            break;
+//        memset(arr2, 0, sizeof(arr2));
+//        k++;
+//       
+//    }
+//    printf("%d", k);
+//    return 0;
+//}
+
 int main()
 {
-    int N = 0;
-    scanf_s("%d", &N);
-    int arr1[5005] = { 0 };
-    int i = 0;
-    while (i < N)
-    {
-        int k = 0;
-        scanf_s("%d", &k);
-        arr1[i++] = k;
-    }
-    int k = N;
-    while (k)
-    {
-        int arr2[5005] = { 0 };
-        for (i = 0; i < N; i++)
-        {
-            arr2[arr1[i] % k]++;
-            if (arr2[arr1[i] % k] == 2)
-                break;
-        }
-        if (i == N)
-            break;
-        memset(arr2, 0, sizeof(arr2));
-        k++;
-       
-    }
-    printf("%d", k);
     return 0;
 }
