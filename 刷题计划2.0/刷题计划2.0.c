@@ -773,7 +773,7 @@ ksjnch hkas*/
         }
     }*/
     
- 
+ /*
 int main()
 {
     int N;
@@ -790,5 +790,114 @@ int main()
         num %= 100000000;
     }
     printf("%d", num % 10);
+    return 0;
+    }*/
+
+
+#define MAX(a,b) (a > b ? a : b)
+
+
+//
+//int main()
+//{
+//    char s[] = "";
+//    int b = strlen(s);
+//    int i = 0;
+//    int count = 0;
+//    int max = 0;
+//    int arr[26] = { 0 };
+//    for (i = 0; i < strlen(s); i++)
+//    {
+//        arr[s[i] - 'a']++;
+//        if (arr[s[i] - 'a'] != 1)
+//        {
+//            i -= count;
+//            count = 0;
+//            memset(arr, 0, sizeof(arr));
+//        }
+//        else
+//            count++;
+//        max = MAX(max, count);
+//        if (max == 26)
+//            break;
+//    }
+//    return 0;
+//}
+//
+//int main()
+//{
+//    char s[] = "dvdf";
+//    int count = 0;
+//    int arr[128] = { 0 };
+//
+//    int sz = strlen(s);
+//    int left = 0, right = 0;    int max = 0;
+//    while (right < strlen(s))
+//    {
+//        arr[s[right]]++;
+//        if (arr[s[right]] != 2)
+//        {
+//            right++;
+//            count++;
+//        }
+//        else
+//        {
+//            while (arr[s[right]] == 2)
+//            {
+//                arr[s[left]]--;
+//                count--;
+//                left++;
+//            }
+//            if (left == right)
+//                count = 1;
+//            right++;
+//        }
+//        max = MAX(max, count);
+//    }
+//    if (arr[s[right - 1]] == 1)
+//        count++;
+//    max = MAX(max, count);
+//    printf("%d ", max);
+//    return 0;
+//}
+//
+//int main()
+//{
+//    int a = 2;
+//    int b = 3;
+//    float c = (float)(a + b) / 2;
+//    printf("%f", c);
+//    return 0;
+//}
+
+int main()
+{
+    int N = 0;
+    scanf_s("%d", &N);
+    int arr1[5005] = { 0 };
+    int i = 0;
+    while (i < N)
+    {
+        int k = 0;
+        scanf_s("%d", &k);
+        arr1[i++] = k;
+    }
+    int k = N;
+    while (k)
+    {
+        int arr2[5005] = { 0 };
+        for (i = 0; i < N; i++)
+        {
+            arr2[arr1[i] % k]++;
+            if (arr2[arr1[i] % k] == 2)
+                break;
+        }
+        if (i == N)
+            break;
+        memset(arr2, 0, sizeof(arr2));
+        k++;
+       
+    }
+    printf("%d", k);
     return 0;
 }
