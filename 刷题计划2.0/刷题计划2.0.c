@@ -901,8 +901,93 @@ int main()
 //    printf("%d", k);
 //    return 0;
 //}
+#include <math.h>
+//
+//char* judy(int num)
+//{
+//    int flag = 1;
+//    if (num < 0)
+//    {
+//        flag = 0;
+//        num = -num;
+//    }
+//    int ret = 1;
+//    int num2 = num;
+//    while (num2)
+//    {
+//        num2 /= 7;
+//        ret++;
+//    }
+//    char* sum = (char*)malloc(sizeof(char) * ret);
+//    if (sum == NULL)
+//    {
+//        return;
+//    }
+//    while (num)
+//    {
+//        int a = num % 7;
+//       sum[ret - 1] = a + '0';
+//        ret--;
+//        num /= 7;
+//    }
+//    if (flag == 0)
+//    {
+//        sum[0] = '-';
+//        return sum;
+//    }
+//    else
+//        return sum + 1;
+//}
+//
+//int main()
+//{
+//
+//    int num = -49;
+//    char* sum = 0;
+//    sum = judy(num);
+//    return 0;
+//}
+//
+//int main()
+//{
+//    int nums[7] = {3,3,7,7,10,11,11};
+//    int numsSize = 7;
+//    if (numsSize == 1)
+//        return nums[0];
+//    int right = numsSize - 1;
+//    int left = 0;
+//    int mid = 0;
+//    while (left < right)
+//    {
+//        mid = (left + right) / 2;
+//        if (mid % 2 == 1)
+//        {
+//            if (nums[mid] == nums[mid - 1])
+//                left = mid;
+//            else if (nums[mid] == nums[mid + 1])
+//                right = mid;
+//            else
+//                break;
+//        }
+//        else if (mid % 2 == 0)
+//        {
+//            if (nums[mid] == nums[mid + 1])
+//
+//                left = mid;
+//            else if (nums[mid] == nums[mid - 1])
+//                right = mid;
+//            else
+//                break;
+//        }
+//    }
+//    printf("%d ", nums[mid]);
+//    return 0;
+//}
 
 int main()
 {
-    return 0;
-}
+    int i;//
+    int j;//
+    int n;//
+    scanf_s("")
+} 
