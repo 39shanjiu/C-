@@ -983,11 +983,51 @@ int main()
 //    printf("%d ", nums[mid]);
 //    return 0;
 //}
+//
+//int main()
+//{
+//    int i;//
+//    int j;//
+//    int n;//
+//    scanf_s("")
+//} 
+
+
+#define MIN(a,b) ((a) > (b) ? b : a)
 
 int main()
 {
-    int i;//
-    int j;//
-    int n;//
-    scanf_s("")
-} 
+    char s[] = "loveleetcode";
+    char c = 'e';
+    int arr[10] = { 0 };
+    int i = 0;
+    int rear = 0;
+    int ans[20] = { 0 };
+    for (i = 0; i < strlen(s); i++)
+    {
+        if (s[i] == c)
+        arr[rear++] = i;
+    }
+    int front = 0;
+    for (i = 0; i <= arr[front]; i++)
+    {
+        arr[i] = arr[front] - i;
+    }
+    front++;
+    for (i; i < strlen(s); i++)
+    {
+        if (i < arr[front])
+        {
+            int a = i - arr[front - 1];
+            int b = arr[front] - i;
+            int c = MIN(a, b);
+            ans[i] = c;
+        }
+        else
+        {
+            ans[i] = 0;
+            front++;
+        }
+    }
+    return 0;
+}
