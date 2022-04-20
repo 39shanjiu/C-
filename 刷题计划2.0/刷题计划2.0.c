@@ -991,43 +991,110 @@ int main()
 //    int n;//
 //    scanf_s("")
 //} 
-
-
-#define MIN(a,b) ((a) > (b) ? b : a)
-
-int main()
-{
-    char s[] = "loveleetcode";
-    char c = 'e';
-    int arr[10] = { 0 };
+//
+//
+//#define MIN(a,b) ((a) > (b) ? b : a)
+//
+//int main()
+//{
+//    char s[] = "loveleetcode";
+//    char c = 'e';
+//    int arr[10] = { 0 };
+//    int i = 0;
+//    int rear = 0;
+//    int ans[20] = { 0 };
+//    for (i = 0; i < strlen(s); i++)
+//    {
+//        if (s[i] == c)
+//        arr[rear++] = i;
+//    }
+//    int front = 0;
+//    for (i = 0; i <= arr[front]; i++)
+//    {
+//        arr[i] = arr[front] - i;
+//    }
+//    front++;
+//    for (i; i < strlen(s); i++)
+//    {
+//        if (i < arr[front])
+//        {
+//            int a = i - arr[front - 1];
+//            int b = arr[front] - i;
+//            int c = MIN(a, b);
+//            ans[i] = c;
+//        }
+//        else
+//        {
+//            ans[i] = 0;
+//            front++;
+//        }
+//    }
+//    return 0;
+//}
+//
+//int countCollisions(char* directions) {
+//    int sz = strlen(directions);
+//    if (sz <= 1)
+//        return 0;
+//    int count = 0;
+//    int i = 0;
+//    for (i = 1; i < sz; i++)
+//    {
+//        if ((directions[i - 1] == 'R' && directions[i] == 'L'))
+//        {
+//            count += 2;
+//            directions[i] = 'S';
+//        }
+//        else if ((directions[i - 1] == 'R' && directions[i] == 'S') || (directions[i] == 'L' && directions[i - 1] == 'S'))
+//            count += 1;
+//    }
+//    return count;
+//}
+//
+//int main()
+////{
+//    char s[] = "RLRSLL";
+//    int a = countCollisions(s);
+//    printf("%d", a);
+//    return 0;
+//}
+int countCollisions(char* directions) {
+    int sz = strlen(directions);
+    if (sz <= 1)
+        return 0;
+    int count = 0;
     int i = 0;
-    int rear = 0;
-    int ans[20] = { 0 };
-    for (i = 0; i < strlen(s); i++)
+    for (i = 1; i < sz; i++)
     {
-        if (s[i] == c)
-        arr[rear++] = i;
-    }
-    int front = 0;
-    for (i = 0; i <= arr[front]; i++)
-    {
-        arr[i] = arr[front] - i;
-    }
-    front++;
-    for (i; i < strlen(s); i++)
-    {
-        if (i < arr[front])
+        if ((directions[i - 1] == 'R' && directions[i] == 'L'))
         {
-            int a = i - arr[front - 1];
-            int b = arr[front] - i;
-            int c = MIN(a, b);
-            ans[i] = c;
+            count += 2;
+            directions[i] = 'S';
+            directions[i - 1] = 'S';
         }
-        else
+        else if (directions[i - 1] == 'R' && directions[i] == 'S')
         {
-            ans[i] = 0;
-            front++;
+            count += 1;
+            directions[i - 1] = 'S';
+        }
+        else if (directions[i] == 'L' && directions[i - 1] == 'S')
+        {
+            count += 1;
+            directions[i] = 'S';
         }
     }
-    return 0;
+    for (i = sz - 2; i >= 0; i--)
+    {
+        if (directions[i] == 'R' && directions[i + 1] == 'S')
+        {
+            count += 1;
+            directions[i] = 'S';
+        }
+        else if (directions[i + 1] == 'L' && directions[i] == 'S')
+        {
+            count += 1;
+            directions[i + 1] = 'S';
+        }
+    }
+    return count;
 }
