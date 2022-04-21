@@ -1098,3 +1098,37 @@ int countCollisions(char* directions) {
     }
     return count;
 }
+int maximumCandies(int* candies, int candiesSize, long long k) {
+    long long count = 0;
+    long long sum = 0;
+    int i = 0;
+    for (i = 0; i < candiesSize; i++)
+    {
+        sum += (long long)candies[i];
+    }
+    if (sum < k)
+        return 0;
+    if (sum == k)
+        return 1;
+    count = sum / k;
+    long long left = 1;
+    long long right = count;
+    long long mid = left + (right - left) / 2;
+    long long max = mid;
+    while (left < right)
+    {
+        count = 0;
+        mid = left + (right - left) / 2;
+        for (i = 0; i < candiesSize; i++)
+        {
+            count += (long long)candies[i] / mid;
+        }
+        if (count <= k)
+            right = mid;
+        else
+        {
+            left = mid + 1;
+        }
+    }
+    return left - 1;
+}
