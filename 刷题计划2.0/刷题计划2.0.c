@@ -1058,77 +1058,169 @@ int main()
 //    printf("%d", a);
 //    return 0;
 //}
-int countCollisions(char* directions) {
-    int sz = strlen(directions);
-    if (sz <= 1)
-        return 0;
-    int count = 0;
+//int countCollisions(char* directions) {
+//    int sz = strlen(directions);
+//    if (sz <= 1)
+//        return 0;
+//    int count = 0;
+//    int i = 0;
+//    for (i = 1; i < sz; i++)
+//    {
+//        if ((directions[i - 1] == 'R' && directions[i] == 'L'))
+//        {
+//            count += 2;
+//            directions[i] = 'S';
+//            directions[i - 1] = 'S';
+//        }
+//        else if (directions[i - 1] == 'R' && directions[i] == 'S')
+//        {
+//            count += 1;
+//            directions[i - 1] = 'S';
+//        }
+//        else if (directions[i] == 'L' && directions[i - 1] == 'S')
+//        {
+//            count += 1;
+//            directions[i] = 'S';
+//        }
+//    }
+//    for (i = sz - 2; i >= 0; i--)
+//    {
+//        if (directions[i] == 'R' && directions[i + 1] == 'S')
+//        {
+//            count += 1;
+//            directions[i] = 'S';
+//        }
+//        else if (directions[i + 1] == 'L' && directions[i] == 'S')
+//        {
+//            count += 1;
+//            directions[i + 1] = 'S';
+//        }
+//    }
+//    return count;
+//}
+//int maximumCandies(int* candies, int candiesSize, long long k) {
+//    long long count = 0;
+//    long long sum = 0;
+//    int i = 0;
+//    for (i = 0; i < candiesSize; i++)
+//    {
+//        sum += (long long)candies[i];
+//    }
+//    if (sum < k)
+//        return 0;
+//    if (sum == k)
+//        return 1;
+//    count = sum / k;
+//    long long left = 1;
+//    long long right = count;
+//    long long mid = left + (right - left) / 2;
+//    long long max = mid;
+//    while (left < right)
+//    {
+//        count = 0;
+//        mid = left + (right - left) / 2;
+//        for (i = 0; i < candiesSize; i++)
+//        {
+//            count += (long long)candies[i] / mid;
+//        }
+//        if (count <= k)
+//            right = mid;
+//        else
+//        {
+//            left = mid + 1;
+//        }
+//    }
+//    return left - 1;
+//}
+
+#define intLength 3
+
+int main()
+{
+    int queries[6] = { 1,2,3,4,5,90 };
+    int queriesSize = sizeof(queries) / sizeof(queries[0]);
+    long long num = 1;
+    int len = intLength / 2;
+    while (len)
+    {
+        num *= 10;
+        len--;
+    }
+    if (intLength % 2 != 1)
+        num /= 10;
     int i = 0;
+    long long snum = num * 9;
+    long long* ans = (long long*)malloc(sizeof(long long) * queriesSize);
+    for (i = 0; i < queriesSize; i++)
+    {
+        if (queries[i] > snum)
+            ans[i] = -1;
+        else
+          ans[i] = num + queries[i] - 1;
+        if (ans[i] != -1)
+        {
+            int qx = 1;
+            long long sum = 0;
+            long long ssnum = ans[i];
+            if (intLength % 2 == 1)
+                ssnum /= 10;
+            while (ssnum)
+            {
+                int a = ssnum % 10;
+                sum += a;
+                sum *= 10;
+                qx *= 10;
+                ssnum /= 10;
+            }
+            sum /= 10;
+            ans[i] *= qx;
+            ans[i] += sum;
+        }
+    }
+    for (i = 0; i < 6; i++)
+    {
+        printf("%d ", ans[i]);
+    }
+    return 0;
+}
+
+long long numberOfWays(char* s) {
+    long long count0 = 0;
+    long long count1 = 0;
+    long long scount0 = 0;
+    long long scount1 = 0;
+    long long n0 = 0;
+    long long n1 = 0;
+    int i = 0;
+    int sz = strlen(s);
+    long long arr[100005] = { 0 };
+    int rear = 0;
+    arr[rear]++;
     for (i = 1; i < sz; i++)
     {
-        if ((directions[i - 1] == 'R' && directions[i] == 'L'))
-        {
-            count += 2;
-            directions[i] = 'S';
-            directions[i - 1] = 'S';
-        }
-        else if (directions[i - 1] == 'R' && directions[i] == 'S')
-        {
-            count += 1;
-            directions[i - 1] = 'S';
-        }
-        else if (directions[i] == 'L' && directions[i - 1] == 'S')
-        {
-            count += 1;
-            directions[i] = 'S';
-        }
+        if (s[i - 1] == s[i])
+            arr[rear]++;
+        else
+            arr[++rear]++;
     }
-    for (i = sz - 2; i >= 0; i--)
-    {
-        if (directions[i] == 'R' && directions[i + 1] == 'S')
-        {
-            count += 1;
-            directions[i] = 'S';
-        }
-        else if (directions[i + 1] == 'L' && directions[i] == 'S')
-        {
-            count += 1;
-            directions[i + 1] = 'S';
-        }
-    }
-    return count;
-}
-int maximumCandies(int* candies, int candiesSize, long long k) {
-    long long count = 0;
-    long long sum = 0;
-    int i = 0;
-    for (i = 0; i < candiesSize; i++)
-    {
-        sum += (long long)candies[i];
-    }
-    if (sum < k)
+    if (rear < 2)
         return 0;
-    if (sum == k)
-        return 1;
-    count = sum / k;
-    long long left = 1;
-    long long right = count;
-    long long mid = left + (right - left) / 2;
-    long long max = mid;
-    while (left < right)
+    n0 = arr[0];
+    n1 = arr[1];
+    for (i = 2; i <= rear; i++)
     {
-        count = 0;
-        mid = left + (right - left) / 2;
-        for (i = 0; i < candiesSize; i++)
+        if (i % 2 == 0)
         {
-            count += (long long)candies[i] / mid;
+            count0 += (n0 * arr[i - 1] + scount0) * arr[i];
+            scount0 += n0 * arr[i - 1];
+            n0 += arr[i];
         }
-        if (count <= k)
-            right = mid;
         else
         {
-            left = mid + 1;
+            count1 += (n1 * arr[i - 1] + scount1) * arr[i];
+            scount1 += n1 * arr[i - 1];
+            n1 += arr[i];
         }
     }
-    return left - 1;
+    return count1 + count0;
 }
