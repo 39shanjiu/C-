@@ -1132,95 +1132,156 @@ int main()
 //    }
 //    return left - 1;
 //}
+//
+//#define intLength 3
+//
+//int main()
+//{
+//    int queries[6] = { 1,2,3,4,5,90 };
+//    int queriesSize = sizeof(queries) / sizeof(queries[0]);
+//    long long num = 1;
+//    int len = intLength / 2;
+//    while (len)
+//    {
+//        num *= 10;
+//        len--;
+//    }
+//    if (intLength % 2 != 1)
+//        num /= 10;
+//    int i = 0;
+//    long long snum = num * 9;
+//    long long* ans = (long long*)malloc(sizeof(long long) * queriesSize);
+//    for (i = 0; i < queriesSize; i++)
+//    {
+//        if (queries[i] > snum)
+//            ans[i] = -1;
+//        else
+//          ans[i] = num + queries[i] - 1;
+//        if (ans[i] != -1)
+//        {
+//            int qx = 1;
+//            long long sum = 0;
+//            long long ssnum = ans[i];
+//            if (intLength % 2 == 1)
+//                ssnum /= 10;
+//            while (ssnum)
+//            {
+//                int a = ssnum % 10;
+//                sum += a;
+//                sum *= 10;
+//                qx *= 10;
+//                ssnum /= 10;
+//            }
+//            sum /= 10;
+//            ans[i] *= qx;
+//            ans[i] += sum;
+//        }
+//    }
+//    for (i = 0; i < 6; i++)
+//    {
+//        printf("%d ", ans[i]);
+//    }
+//    return 0;
+//}
+//
+//long long numberOfWays(char* s) {
+//    long long count0 = 0;
+//    long long count1 = 0;
+//    long long scount0 = 0;
+//    long long scount1 = 0;
+//    long long n0 = 0;
+//    long long n1 = 0;
+//    int i = 0;
+//    int sz = strlen(s);
+//    long long arr[100005] = { 0 };
+//    int rear = 0;
+//    arr[rear]++;
+//    for (i = 1; i < sz; i++)
+//    {
+//        if (s[i - 1] == s[i])
+//            arr[rear]++;
+//        else
+//            arr[++rear]++;
+//    }
+//    if (rear < 2)
+//        return 0;
+//    n0 = arr[0];
+//    n1 = arr[1];
+//    for (i = 2; i <= rear; i++)
+//    {
+//        if (i % 2 == 0)
+//        {
+//            count0 += (n0 * arr[i - 1] + scount0) * arr[i];
+//            scount0 += n0 * arr[i - 1];
+//            n0 += arr[i];
+//        }
+//        else
+//        {
+//            count1 += (n1 * arr[i - 1] + scount1) * arr[i];
+//            scount1 += n1 * arr[i - 1];
+//            n1 += arr[i];
+//        }
+//    }
+//    return count1 + count0;
+//},
 
-#define intLength 3
+/*int comp(const void* e1, const void* e2)
+{
+    if (((int*)e1)[0] < ((int*)e2)[0])
+        return -1;
+    else if (((int*)e1)[0] == ((int*)e2)[0])
+    {
+        return (((int*)e1)[1] - ((int*)e2)[1]);
+    }
+    else
+        return 1;
+}
 
 int main()
 {
-    int queries[6] = { 1,2,3,4,5,90 };
-    int queriesSize = sizeof(queries) / sizeof(queries[0]);
-    long long num = 1;
-    int len = intLength / 2;
-    while (len)
-    {
-        num *= 10;
-        len--;
-    }
-    if (intLength % 2 != 1)
-        num /= 10;
-    int i = 0;
-    long long snum = num * 9;
-    long long* ans = (long long*)malloc(sizeof(long long) * queriesSize);
-    for (i = 0; i < queriesSize; i++)
-    {
-        if (queries[i] > snum)
-            ans[i] = -1;
-        else
-          ans[i] = num + queries[i] - 1;
-        if (ans[i] != -1)
-        {
-            int qx = 1;
-            long long sum = 0;
-            long long ssnum = ans[i];
-            if (intLength % 2 == 1)
-                ssnum /= 10;
-            while (ssnum)
-            {
-                int a = ssnum % 10;
-                sum += a;
-                sum *= 10;
-                qx *= 10;
-                ssnum /= 10;
-            }
-            sum /= 10;
-            ans[i] *= qx;
-            ans[i] += sum;
-        }
-    }
-    for (i = 0; i < 6; i++)
-    {
-        printf("%d ", ans[i]);
-    }
-    return 0;
-}
+    int arr[4][2] = { {2,4},{3,2},{1,6} ,{2,5} };
+    qsort(arr, 4, sizeof(int) * 2, comp);
+    int a = 0;
 
-long long numberOfWays(char* s) {
-    long long count0 = 0;
-    long long count1 = 0;
-    long long scount0 = 0;
-    long long scount1 = 0;
-    long long n0 = 0;
-    long long n1 = 0;
-    int i = 0;
+    */
+
+#define MAX(a,b) (a > b ? a : b)
+int main()
+{
+    char s[] = "()(()()()()()(()()(((()()))((((((((((((((((((((((((((()))))()()((()()()()()()()()()()()()()()()())((((((((())))))))(((((((()()()()()(()((()(()()(()()()((((((((((((((((()))(())(()())()(()()()()()()()()";
     int sz = strlen(s);
-    long long arr[100005] = { 0 };
-    int rear = 0;
-    arr[rear]++;
-    for (i = 1; i < sz; i++)
-    {
-        if (s[i - 1] == s[i])
-            arr[rear]++;
-        else
-            arr[++rear]++;
-    }
-    if (rear < 2)
+    int i = 0;
+    int max = 0;
+    int count = 0;
+    if (sz <= 1)
         return 0;
-    n0 = arr[0];
-    n1 = arr[1];
-    for (i = 2; i <= rear; i++)
+    int stk = 0;
+    int num = 0;
+    int scount = 0;
+    for (i = 0; i < sz; i++)
     {
-        if (i % 2 == 0)
-        {
-            count0 += (n0 * arr[i - 1] + scount0) * arr[i];
-            scount0 += n0 * arr[i - 1];
-            n0 += arr[i];
-        }
+        if (s[i] == '(')
+            stk++;
         else
         {
-            count1 += (n1 * arr[i - 1] + scount1) * arr[i];
-            scount1 += n1 * arr[i - 1];
-            n1 += arr[i];
+            if (stk != 0)
+            {
+                stk--;
+                count += 2;
+                if (stk == 0)
+                {
+                    scount += count;
+                    count = 0;
+                }
+            }
+            else
+            {
+                scount = 0;
+                count = 0;
+            }
         }
+        max = MAX(max, scount);
     }
-    return count1 + count0;
+    max = MAX(max, count);
+    return 0;
 }
