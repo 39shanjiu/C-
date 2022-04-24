@@ -1246,42 +1246,196 @@ int main()
     */
 
 #define MAX(a,b) (a > b ? a : b)
-int main()
+//int main()
+//{
+//    char s[] = "()(()()()()()(()()(((()()))((((((((((((((((((((((((((()))))()()((()()()()()()()()()()()()()()()())((((((((())))))))(((((((()()()()()(()((()(()()(()()()((((((((((((((((()))(())(()())()(()()()()()()()()";
+//    int sz = strlen(s);
+//    int i = 0;
+//    int max = 0;
+//    int count = 0;
+//    if (sz <= 1)
+//        return 0;
+//    int stk = 0;
+//    int num = 0;
+//    int scount = 0;
+//    for (i = 0; i < sz; i++)
+//    {
+//        if (s[i] == '(')
+//            stk++;
+//        else
+//        {
+//            if (stk != 0)
+//            {
+//                stk--;
+//                count += 2;
+//                if (stk == 0)
+//                {
+//                    scount += count;
+//                    count = 0;
+//                }
+//            }
+//            else
+//            {
+//                scount = 0;
+//                count = 0;
+//            }
+//        }
+//        max = MAX(max, scount);
+//    }
+//    max = MAX(max, count);
+//    return 0;
+//}
+
+//int main()
+//{
+//    int nums[7] = { 5,3,2,2,4,0,6 };
+//    int numsSize = 7;
+//    int k = 4;
+//    int i = 0;
+//    int rear = 0;
+//    int max = 0;
+//    if (numsSize == 1 && k % 2 == 1)
+//        return -1;
+//    for (i = 0; i < k; i++)
+//    {
+//        if (rear < numsSize - 1)
+//            max = MAX(max, nums[rear++]);
+//        else
+//            break;
+//    }
+//    return 0;
+//}
+
+
+void DFSpluse(char grid[3][3], int l, int i, int j, char c)
 {
-    char s[] = "()(()()()()()(()()(((()()))((((((((((((((((((((((((((()))))()()((()()()()()()()()()()()()()()()())((((((((())))))))(((((((()()()()()(()((()(()()(()()()((((((((((((((((()))(())(()())()(()()()()()()()()";
-    int sz = strlen(s);
-    int i = 0;
-    int max = 0;
-    int count = 0;
-    if (sz <= 1)
-        return 0;
-    int stk = 0;
-    int num = 0;
-    int scount = 0;
-    for (i = 0; i < sz; i++)
+    if (grid[i][j] != c)
+        return;
+    grid[i][j] = '6';
+    int sz2 = sizeof(grid[i]);
+    if (i > 0)
     {
-        if (s[i] == '(')
-            stk++;
-        else
+        int sz1 = sizeof(grid[i - 1]);
+        if (j < sz1)
+            DFSpluse(grid, l, i - 1, j, c);
+    }
+    if (i + 1 < l)
+    {
+        int sz1 = sizeof(grid[i + 1]);
+        if (j < sz1)
+            DFSpluse(grid, l, i + 1, j, c);
+    }
+    if (j > 0)
+        DFSpluse(grid, l, i, j - 1, c);
+    if (j + 1 < sz2)
+        DFSpluse(grid, l, i, j + 1, c);
+
+}
+
+
+void DFS(char grid[3][3], int l, int i, int j, int* count, char c)
+{
+    if (grid[i][j] != c)
+        return;
+    *count += 1;
+    grid[i][j] = '6';
+    int sz2 = sizeof(grid[i]);
+    if (i > 0)
+    {
+        int sz1 = sizeof(grid[i - 1]);
+        if (j < sz1)
+            DFS(grid, l, i - 1, j, count, c);
+    }
+    if (i + 1 < l)
+    {
+        int sz1 = sizeof(grid[i + 1]);
+        if (j < sz1)
+            DFS(grid, l, i + 1, j, count, c);
+    }
+    if (j > 0)
+        DFS(grid, l, i, j - 1, count, c);
+    if (j + 1 < sz2)
+        DFS(grid, l, i, j + 1, count, c);
+}
+
+
+int largestArea(char grid[3][3], int gridSize) {
+    int i = 0;
+    int j = 0;
+    for (i = 0; i < gridSize; i++)
+    {
+        int sz = sizeof(grid[i]);
+        for (j = 0; j < sz; j++)
         {
-            if (stk != 0)
+            if (grid[i][j] == '6')
+                continue;
+            if (i == 0 || j == 0 || i + 1 == gridSize || j + 1 == sz)
             {
-                stk--;
-                count += 2;
-                if (stk == 0)
+                if (grid[i][j] != '0')
                 {
-                    scount += count;
-                    count = 0;
+                    char c = grid[i][j];
+                    DFSpluse(grid, gridSize, i, j, c);
                 }
             }
-            else
+            if (grid[i][j] == '0')
             {
-                scount = 0;
+                if (i > 0)
+                {
+                    int sz1 = sizeof(grid[i - 1]);
+                    if (j < sz1 && grid[i - 1][j] != '0' && grid[i - 1][j] != '6')
+                    {
+                        char c = grid[i - 1][j];
+                        DFSpluse(grid, gridSize, i - 1, j, c);
+                    }
+                }
+                if (i + 1 < gridSize)
+                {
+                    int sz1 = sizeof(grid[i + 1]);
+                    if (j < sz1 && grid[i + 1][j] != '0' && grid[i + 1][j] != '6')
+                    {
+                        char c = grid[i + 1][j];
+                        DFSpluse(grid, gridSize, i + 1, j, c);
+                    }
+                }
+                if (j > 0 && grid[i][j - 1] != '0' && grid[i][j - 1] != '6')
+                {
+                    char c = grid[i][j - 1];
+                    DFSpluse(grid, gridSize, i, j - 1, c);
+                }
+                if (j + 1 < sz && grid[i][j + 1] != '0' && grid[i][j + 1] != '6')
+                {
+                    char c = grid[i][j + 1];
+                    DFSpluse(grid, gridSize, i, j + 1, c);
+                }
+            }
+        }
+    }
+    int count = 0;
+    int max = 0;
+    for (i = 0; i < gridSize; i++)
+    {
+        int sz = sizeof(grid[i]);
+        for (j = 0; j < sz; j++)
+        {
+            if (grid[i][j] != '0' && grid[i][j] != '6')
+            {
+                char c = grid[i][j];
+                DFS(grid, gridSize, i, j, &count, c);
+                if (count > max)
+                max = count;
                 count = 0;
             }
         }
-        max = MAX(max, scount);
     }
-    max = MAX(max, count);
+    return max;
+}
+
+
+int main()
+{
+    char grid[][8] = { "110","231","221" };
+    int gridSize = 3;
+    int a = largestArea(grid, gridSize);
+    printf("%d", a);
     return 0;
 }
