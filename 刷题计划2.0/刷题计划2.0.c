@@ -1305,60 +1305,60 @@ int main()
 //    }
 //    return 0;
 //}
+//
+//
+//void DFSpluse(char grid[3][3], int l, int i, int j, char c)
+//{
+//    if (grid[i][j] != c)
+//        return;
+//    grid[i][j] = '6';
+//    int sz2 = sizeof(grid[i]);
+//    if (i > 0)
+//    {
+//        int sz1 = sizeof(grid[i - 1]);
+//        if (j < sz1)
+//            DFSpluse(grid, l, i - 1, j, c);
+//    }
+//    if (i + 1 < l)
+//    {
+//        int sz1 = sizeof(grid[i + 1]);
+//        if (j < sz1)
+//            DFSpluse(grid, l, i + 1, j, c);
+//    }
+//    if (j > 0)
+//        DFSpluse(grid, l, i, j - 1, c);
+//    if (j + 1 < sz2)
+//        DFSpluse(grid, l, i, j + 1, c);
+//
+//}
+//
+//
+//void DFS(char grid[3][3], int l, int i, int j, int* count, char c)
+//{
+//    if (grid[i][j] != c)
+//        return;
+//    *count += 1;
+//    grid[i][j] = '6';
+//    int sz2 = sizeof(grid[i]);
+//    if (i > 0)
+//    {
+//        int sz1 = sizeof(grid[i - 1]);
+//        if (j < sz1)
+//            DFS(grid, l, i - 1, j, count, c);
+//    }
+//    if (i + 1 < l)
+//    {
+//        int sz1 = sizeof(grid[i + 1]);
+//        if (j < sz1)
+//            DFS(grid, l, i + 1, j, count, c);
+//    }
+//    if (j > 0)
+//        DFS(grid, l, i, j - 1, count, c);
+//    if (j + 1 < sz2)
+//        DFS(grid, l, i, j + 1, count, c);
+//}
 
-
-void DFSpluse(char grid[3][3], int l, int i, int j, char c)
-{
-    if (grid[i][j] != c)
-        return;
-    grid[i][j] = '6';
-    int sz2 = sizeof(grid[i]);
-    if (i > 0)
-    {
-        int sz1 = sizeof(grid[i - 1]);
-        if (j < sz1)
-            DFSpluse(grid, l, i - 1, j, c);
-    }
-    if (i + 1 < l)
-    {
-        int sz1 = sizeof(grid[i + 1]);
-        if (j < sz1)
-            DFSpluse(grid, l, i + 1, j, c);
-    }
-    if (j > 0)
-        DFSpluse(grid, l, i, j - 1, c);
-    if (j + 1 < sz2)
-        DFSpluse(grid, l, i, j + 1, c);
-
-}
-
-
-void DFS(char grid[3][3], int l, int i, int j, int* count, char c)
-{
-    if (grid[i][j] != c)
-        return;
-    *count += 1;
-    grid[i][j] = '6';
-    int sz2 = sizeof(grid[i]);
-    if (i > 0)
-    {
-        int sz1 = sizeof(grid[i - 1]);
-        if (j < sz1)
-            DFS(grid, l, i - 1, j, count, c);
-    }
-    if (i + 1 < l)
-    {
-        int sz1 = sizeof(grid[i + 1]);
-        if (j < sz1)
-            DFS(grid, l, i + 1, j, count, c);
-    }
-    if (j > 0)
-        DFS(grid, l, i, j - 1, count, c);
-    if (j + 1 < sz2)
-        DFS(grid, l, i, j + 1, count, c);
-}
-
-
+/*
 int largestArea(char grid[3][3], int gridSize) {
     int i = 0;
     int j = 0;
@@ -1373,7 +1373,7 @@ int largestArea(char grid[3][3], int gridSize) {
             {
                 if (grid[i][j] != '0')
                 {
-                    char c = grid[i][j];
+           */ /*        char c = grid[i][j];
                     DFSpluse(grid, gridSize, i, j, c);
                 }
             }
@@ -1436,6 +1436,208 @@ int main()
     char grid[][8] = { "110","231","221" };
     int gridSize = 3;
     int a = largestArea(grid, gridSize);
-    printf("%d", a);
+    printf("%d", a);*/
+//    return 0;
+//}
+//
+//int main()
+//{
+//    int x = 1563847412;
+//    int arr[10] = { 0 };
+//    int flag = 1;
+//    /*if (x < 0 && x != -2147483648)
+//    {
+//        flag = -1;
+//        x = -x;
+//    }
+//    if (x == -2147483648)
+//        return 0;*/
+//    int n = x;
+//    int rear = 0;
+//    while (n)
+//    {
+//        arr[rear++] = n % 10;
+//        n /= 10;
+//    }
+//    if (rear < 10)
+//    {
+//        int num = 0;
+//        while (num < rear)
+//        {
+//            if (n == 0 && arr[num] == 0)
+//                num++;
+//            else
+//            {
+//                n += arr[num];
+//                num++;
+//                if (num == rear)
+//                    break;
+//                n *= 10;
+//            }
+//        }
+//    }
+//    else
+//    {
+//        int fg = 1;
+//        int ar[10] = { 2,1,4,7,4,8,9,6,4,7 };
+//        int front = 0;
+//        int i = 0;
+//        if (flag == -1)
+//            ar[9] = 8;
+//        for (i = 0; i < 10; i++, front++)
+//        {
+//            if (arr[front] < ar[i])
+//                break;
+//            else if (arr[front] == ar[i])
+//                continue;
+//            else
+//            {
+//                fg = 0;
+//                break;
+//            }
+//        }
+//        if (fg == 0)
+//            return 0;
+//        else
+//        {
+//            int num = 0;
+//            while (num < rear)
+//            {
+//                if (n == 0 && arr[num] == 0)
+//                    num++;
+//                else
+//                {
+//                    n += arr[num];
+//                    num++;
+//                    if (num < rear)
+//                        n *= 10;
+//                }
+//            }
+//        }
+//    }
+//    return 0;
+//}
+
+//#define gridSize 1
+//
+//void DFS(int grid[1][2], int r, int l, int i, int j, int c)
+//{
+//    if (i > 0 && grid[i - 1][j] == 1)
+//        grid[i - 1][j] = c;
+//    if (i + 1 < r && grid[i + 1][j] == 1)
+//        grid[i + 1][j] = c;
+//    if (j > 0 && grid[i][j - 1] == 1)
+//        grid[i][j - 1] = c;
+//    if (j + 1 < l && grid[i][j + 1] == 1)
+//        grid[i][j + 1] = c;
+//}
+//
+//int main()
+//{
+//    int grid[1][2] = { {0,1} };
+//    int gridColSize[1] = { 2 };
+//    int i = 0;
+//    int j = 0;
+//    int time = 0;
+//    int c = 3;
+//    int n = 0;
+//    for (i = 0; i < gridSize; i++)
+//    {
+//        for (j = 0; j < gridColSize[0]; j++)
+//        {
+//            if (grid[i][j] == 1)
+//                break;
+//        }
+//        if (grid[i][j] == 1)
+//            break;
+//    }
+//    if (i == gridSize)
+//        return 0;
+//    while (n < 15)
+//    {
+//        int flag = 0;
+//        for (i = 0; i < gridSize; i++)
+//        {
+//            for (j = 0; j < gridColSize[0]; j++)
+//            {
+//                if (grid[i][j] == c - 1)
+//                {
+//                    DFS(grid, gridSize, gridColSize[0], i, j, c);
+//                    flag = -1;
+//                }
+//            }
+//        }
+//        c = c + 1;
+//        if (flag == 0)
+//        {
+//            time--;
+//            break;
+//        }
+//        time++;
+//    }
+//    for (i = 0; i < gridSize; i++)
+//    {
+//        for (j = 0; j < gridColSize[0]; j++)
+//        {
+//            if (grid[i][j] == 1)
+//    }
+//    return 0;
+//}
+
+       void DFS(char board[4][4], int r, int l, int i, int j)
+       {
+           if (board[i][j] != 'O');
+           return;
+           board[i][j] = 'Y';
+           if (i > 0)
+               DFS(board, r, l, i - 1, j);
+           if (i + 1 < r)
+               DFS(board, r, l, i + 1, j);
+           if (j > 0)
+               DFS(board, r, l, i, j - 1);
+           if (j + 1 < l)
+               DFS(board, r, l, i, j + 1);
+       }
+
+int main()
+{
+    char board[4][4] = { "XXXX","XOOX","XXOX","XOXX" };
+    int r = 4;
+    int l[1] = {4};
+    int i = 0;
+    int j = 0;
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < l[0]; j++)
+        {
+            if (i == 0 || j == 0 || i == r - 1 || j == l[0] - 1)
+            {
+                if (board[i][j] == 'O')
+                {
+                    DFS(board, r, l[0], i, j);
+                }
+            }
+        }
+    }
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < l[0]; j++)
+        {
+            if (board[i][j] == 'O')
+            {
+                board[i][j] = 'X';
+            }
+        }
+    }
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < l[0]; j++)
+        {
+            if (board[i][j] == 'Y')
+            {
+                board[i][j] = 'O';
+            }
+        }
+    }
     return 0;
 }
