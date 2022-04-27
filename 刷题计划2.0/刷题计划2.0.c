@@ -1583,61 +1583,231 @@ int main()
 //    }
 //    return 0;
 //}
+//
+//       void DFS(char board[4][4], int r, int l, int i, int j)
+//       {
+//           if (board[i][j] != 'O');
+//           return;
+//           board[i][j] = 'Y';
+//           if (i > 0)
+//               DFS(board, r, l, i - 1, j);
+//           if (i + 1 < r)
+//               DFS(board, r, l, i + 1, j);
+//           if (j > 0)
+//               DFS(board, r, l, i, j - 1);
+//           if (j + 1 < l)
+//               DFS(board, r, l, i, j + 1);
+//       }
+//
+//int main()
+//{
+//    char board[4][4] = { "XXXX","XOOX","XXOX","XOXX" };
+//    int r = 4;
+//    int l[1] = {4};
+//    int i = 0;
+//    int j = 0;
+//    for (i = 0; i < r; i++)
+//    {
+//        for (j = 0; j < l[0]; j++)
+//        {
+//            if (i == 0 || j == 0 || i == r - 1 || j == l[0] - 1)
+//            {
+//                if (board[i][j] == 'O')
+//                {
+//                    DFS(board, r, l[0], i, j);
+//                }
+//            }
+//        }
+//    }
+//    for (i = 0; i < r; i++)
+//    {
+//        for (j = 0; j < l[0]; j++)
+//        {
+//            if (board[i][j] == 'O')
+//            {
+//                board[i][j] = 'X';
+//            }
+//        }
+//    }
+//    for (i = 0; i < r; i++)
+//    {
+//        for (j = 0; j < l[0]; j++)
+//        {
+//            if (board[i][j] == 'Y')
+//            {
+//                board[i][j] = 'O';
+//            }
+//        }
+//    }
+//    return 0;
+//}
 
-       void DFS(char board[4][4], int r, int l, int i, int j)
-       {
-           if (board[i][j] != 'O');
-           return;
-           board[i][j] = 'Y';
-           if (i > 0)
-               DFS(board, r, l, i - 1, j);
-           if (i + 1 < r)
-               DFS(board, r, l, i + 1, j);
-           if (j > 0)
-               DFS(board, r, l, i, j - 1);
-           if (j + 1 < l)
-               DFS(board, r, l, i, j + 1);
-       }
+
+//
+//void To_left(int heights[5][5], int m, int i, int j, int* count)
+//{
+//    if (j > 0)
+//    {
+//        if (heights[i][j] >= heights[i][j - 1])
+//        {
+//            *count += 1;
+//            To_left(heights, m, i, j - 1, count);
+//        }
+//    }
+//}
+//
+//void To_right(int heights[5][5], int m, int i, int j, int* count)
+//{
+//    if (j + 1 < m)
+//    {
+//        if ( j + 1 < m && heights[i][j] >= heights[i][j + 1])
+//        {
+//            *count += 1;
+//            To_right(heights, m, i, j + 1, count);
+//        }
+//    }
+//}
+//
+//void TO_up(int heights[5][5], int n, int i, int j, int* count)
+//{
+//    if (i > 0)
+//    {
+//        if (heights[i][j] >= heights[i - 1][j])
+//        {
+//            *count += 1;
+//            TO_up(heights, n, i - 1, j, count);
+//        }
+//    }
+//}
+//
+//void To_down(int heights[5][5], int n, int i, int j, int* count)
+//{
+//    if (i + 1 < n)
+//    {
+//        if (heights[i][j] >= heights[i + 1][j])
+//        {
+//            *count += 1;
+//            To_down(heights, n, i + 1, j, count);
+//        }
+//    }
+//}
+
+//
+//
+//
+//int main()
+//{
+//    
+//    //*returnSize = 0;
+//    int** ans = (int**)malloc(sizeof(int*) * heightsColSize[0] * heightsSize);
+//    //*returnColumnSizes = (int*)malloc(sizeof(int) * heightsSize * heightsColSize[0]);
+//    for (i = 1; i < heightsSize; i++)
+//    {
+//        for (j = 4; j < heightsColSize[0]; j++)
+//        {
+//            int right = 0;
+//            int left = 0;
+//            int up = 0;
+//            int down = 0;
+            /*To_left(heights, heightsColSize[0], i, j, &left);
+            To_right(heights, heightsColSize[0], i, j, &right);
+            TO_up(heights, heightsSize, i, j, &up);
+            To_down(heights, heightsSize, i, j, &down);*/
+//            if ((up == i || left == j) && ((i + 1 + down) == heightsSize || (j + 1 + right) == heightsColSize[0]))
+//            {
+//                
+//                //(*returnColumnSizes)[*returnSize] = 2;
+//                leve++;
+//            }
+//        }
+//    }
+//    return 0;
+//}
+
+//
+//void To_everywhere(int heights[5][5], int n, int m, int i, int j, int* flag)
+//{
+//    if (i > 0 && heights[i][j] >= heights[i - 1][j])
+//        To_everywhere(heights, n, m, i - 1, j, flag);
+//    if (j > 0 && heights[i][j] >= heights[i][j - 1])
+//        To_everywhere(heights, n, m, i, j - 1, flag);
+//    if (i + 1 < n && heights[i][j] >= heights[i + 1][j])
+//        To_everywhere(heights, n, m, i + 1, j, flag);
+//    if (j + 1 < m && heights[i][j] >= heights[i][j + 1])
+//        To_everywhere(heights, n, m, i, j + 1, flag);
+//    if ((i == 0 || j == 0) && (i + 1 == n || j + 1 == m))
+//        *flag = 1;
+//}
+//
+//
+//int main()
+//{
+//    int heights[5][5] = { {1,2,2,3,5 }, { 3,2,3,4,4 }, { 2,4,5,3,1 }, { 6,7,1,4,5 }, { 5,1,1,2,4 } };
+//    int heightsColSize[1] = { 5 };
+//    int heightsSize = 5;
+//    int ans[10][2] = { 0 };
+//    int i = 0;
+//    int j = 0;
+//    int leve = 0;
+//    int n = heightsSize;
+//    int m = heightsColSize[0];
+//    for (i = 0; i < heightsSize; i++)
+//    {
+//        for (j = 0; j < heightsColSize[0]; j++)
+//        {
+//            int flag = 0;
+//            To_everywhere(heights, n, m, i, j, &flag);
+//            if (flag == 1)
+//            {
+//                ans[leve][0] = i;
+//                ans[leve][1] = j;
+//                //(*returnColumnSizes)[*returnSize] = 2;
+//                leve++;
+//            }
+//        }
+//    }
+//    return 0;
+//}
 
 int main()
 {
-    char board[4][4] = { "XXXX","XOOX","XXOX","XOXX" };
-    int r = 4;
-    int l[1] = {4};
+    int time[3] = { 1,3};
+    int timeSize = 2;
+    int totalTrips = 1;
     int i = 0;
-    int j = 0;
-    for (i = 0; i < r; i++)
+    long long right = 0;
+    long long left = 10000000;
+    for (i = 0; i < timeSize; i++)
     {
-        for (j = 0; j < l[0]; j++)
-        {
-            if (i == 0 || j == 0 || i == r - 1 || j == l[0] - 1)
-            {
-                if (board[i][j] == 'O')
-                {
-                    DFS(board, r, l[0], i, j);
-                }
-            }
-        }
+        if (time[i] > right)
+            right = time[i];
+        if (time[i] < left)
+            left = time[i];
     }
-    for (i = 0; i < r; i++)
+    if (totalTrips % timeSize != 0)
+        right *= (totalTrips / timeSize + 1);
+    else
+        right *= totalTrips / timeSize;
+    if (totalTrips % timeSize != 0)
+        left *= (totalTrips / timeSize + 1);
+    else
+        left *= totalTrips / timeSize;
+    long long count = right;
+    while (left < right)
     {
-        for (j = 0; j < l[0]; j++)
+        long long mid = left + (right - left) / 2;
+        long long sum = totalTrips;
+        for (i = 0; i < timeSize; i++)
+        sum -= mid / time[i];
+        if (sum > 0)
+            left = mid + 1;
+        else if (sum < 0)
         {
-            if (board[i][j] == 'O')
-            {
-                board[i][j] = 'X';
-            }
+            count = mid;
+            right = mid;
         }
-    }
-    for (i = 0; i < r; i++)
-    {
-        for (j = 0; j < l[0]; j++)
-        {
-            if (board[i][j] == 'Y')
-            {
-                board[i][j] = 'O';
-            }
-        }
+        else
+            break;
     }
     return 0;
 }
