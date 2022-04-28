@@ -1768,46 +1768,79 @@ int main()
 //    }
 //    return 0;
 //}
+//
+//int main()
+//{
+//    int time[3] = { 1,3};
+//    int timeSize = 2;
+//    int totalTrips = 1;
+//    int i = 0;
+//    long long right = 0;
+//    long long left = 10000000;
+//    for (i = 0; i < timeSize; i++)
+//    {
+//        if (time[i] > right)
+//            right = time[i];
+//        if (time[i] < left)
+//            left = time[i];
+//    }
+//    if (totalTrips % timeSize != 0)
+//        right *= (totalTrips / timeSize + 1);
+//    else
+//        right *= totalTrips / timeSize;
+//    if (totalTrips % timeSize != 0)
+//        left *= (totalTrips / timeSize + 1);
+//    else
+//        left *= totalTrips / timeSize;
+//    long long count = right;
+//    while (left < right)
+//    {
+//        long long mid = left + (right - left) / 2;
+//        long long sum = totalTrips;
+//        for (i = 0; i < timeSize; i++)
+//        sum -= mid / time[i];
+//        if (sum > 0)
+//            left = mid + 1;
+//        else if (sum < 0)
+//        {
+//            count = mid;
+//            right = mid;
+//        }
+//        else
+//            break;
+//    }
+//    return 0;
+//}
+
 
 int main()
 {
-    int time[3] = { 1,3};
-    int timeSize = 2;
-    int totalTrips = 1;
+    int nums[] = { 1,1,1,1,0,6,8 };
+    int sz = 7;
     int i = 0;
-    long long right = 0;
-    long long left = 10000000;
-    for (i = 0; i < timeSize; i++)
-    {
-        if (time[i] > right)
-            right = time[i];
-        if (time[i] < left)
-            left = time[i];
-    }
-    if (totalTrips % timeSize != 0)
-        right *= (totalTrips / timeSize + 1);
-    else
-        right *= totalTrips / timeSize;
-    if (totalTrips % timeSize != 0)
-        left *= (totalTrips / timeSize + 1);
-    else
-        left *= totalTrips / timeSize;
-    long long count = right;
+    int j = 0;
+    int left = 0;
+    int right = sz - 1;
     while (left < right)
     {
-        long long mid = left + (right - left) / 2;
-        long long sum = totalTrips;
-        for (i = 0; i < timeSize; i++)
-        sum -= mid / time[i];
-        if (sum > 0)
-            left = mid + 1;
-        else if (sum < 0)
+        int min = nums[sz - 1];
+        int max = 0;
+        int mid = left + (right - left) / 2;
+        for (i = 0; i <= mid; i++)
         {
-            count = mid;
-            right = mid;
+            if (nums[i] > max)
+                max = nums[i];
         }
+        for (i = sz - 1; i > mid; i--)
+        {
+            if (nums[i] < min)
+                min = nums[i];
+        }
+        if (max < min)
+            left = mid + 1;
         else
-            break;
+            right = mid;
     }
+    return left;
     return 0;
 }
