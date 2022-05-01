@@ -1811,36 +1811,136 @@ int main()
 //    }
 //    return 0;
 //}
+//
+//
+//int main()
+//{
+//    int nums[] = { 1,1,1,1,0,6,8 };
+//    int sz = 7;
+//    int i = 0;
+//    int j = 0;
+//    int left = 0;
+//    int right = sz - 1;
+//    while (left < right)
+//    {
+//        int min = nums[sz - 1];
+//        int max = 0;
+//        int mid = left + (right - left) / 2;
+//        for (i = 0; i <= mid; i++)
+//        {
+//            if (nums[i] > max)
+//                max = nums[i];
+//        }
+//        for (i = sz - 1; i > mid; i--)
+//        {
+//            if (nums[i] < min)
+//                min = nums[i];
+//        }
+//        if (max < min)
+//            left = mid + 1;
+//        else
+//            right = mid;
+//    }
+//    return left;
+//    return 0;
+//}
+#include <stdio.h>
+#include <stdlib.h>
 
+int comp(const void* e1, const void* e2)
+{
+    return (*(int*)e1 - *(int*)e2);
+}
 
 int main()
 {
-    int nums[] = { 1,1,1,1,0,6,8 };
-    int sz = 7;
+    int heights[] = { 21,21,31,561,5,132,1,684,89,4,987,984,15,1,321,3251,654,98,78,41,51,321,6,4,984,651,23,16,864,98,8 };
+    int heightsSize = 30;
+    int ladders = 0;
+    int bricks = 1000;
     int i = 0;
-    int j = 0;
-    int left = 0;
-    int right = sz - 1;
-    while (left < right)
+    int rear = 0;
+    if (heightsSize == 1)
+    return 0;
+    for (i = 1; i < heightsSize && rear < ladders; i++)
     {
-        int min = nums[sz - 1];
-        int max = 0;
-        int mid = left + (right - left) / 2;
-        for (i = 0; i <= mid; i++)
-        {
-            if (nums[i] > max)
-                max = nums[i];
-        }
-        for (i = sz - 1; i > mid; i--)
-        {
-            if (nums[i] < min)
-                min = nums[i];
-        }
-        if (max < min)
-            left = mid + 1;
-        else
-            right = mid;
+        if (heights[i] > heights[i - 1])
+        arr[rear++] = heights[i] - heights[i - 1];
     }
-    return left;
+    if (i == heightsSize)
+    return heightsSize - 1;
+    qsort(arr,rear,sizeof(int),comp);
+    for (i; i < heightsSize; i++)
+    {
+        if (heights[i] > heights[i - 1])
+        {
+          if (arr[0] < heights[i] - heights[i - 1])
+          {
+            bricks -= arr[0];
+            if (bricks < 0)
+            break;
+            int j = 0;
+            for (j = 1; j < rear; j++)
+            {
+                arr[j - 1] = arr[j];
+                if (arr[j] > heights[i] - heights[i - 1])
+                {
+                    arr[j - 1] = arr[j - 1] = arr[j];
+                    break;
+                }
+            }
+            if (j == rear)
+            arr[j - 1] = heights[i] - heights[i - 1];
+          }
+          else
+          {
+            bricks -= heights[i] - heights[i - 1];
+            if (bricks < 0)
+            break;
+          }
+        }
+    }
+    return i - 1; }
+    int arr[10005] = { 0 };
+    int i = 0;
+    int rear = 0;
+    for(i = 1; i < heightsSize && rear < ladders; i++)
+    {
+        if (heights[i] > heights[i - 1])
+            arr[rear++] = heights[i] - heights[i - 1];
+    }
+    if (i == heightsSize)
+        return heightsSize - 1;
+    qsort(arr, rear, sizeof(int), comp);
+    for(i; i < heightsSize; i++)
+    {
+        if (heights[i] > heights[i - 1])
+        {
+            if (arr[0] < heights[i] - heights[i - 1])
+            {
+                bricks -= arr[0];
+                if (bricks < 0)
+                    break;
+                int j = 0;
+                for (j = 1; j < rear; j++)
+                {
+                    arr[j - 1] = arr[j];
+                    if (arr[j] > heights[i] - heights[i - 1])
+                    {
+                        arr[j - 1] = arr[j - 1] = arr[j];
+                        break;
+                    }
+                }
+                if (j == rear)
+                    arr[j - 1] = heights[i] - heights[i - 1];
+            }
+            else
+            {
+                bricks -= heights[i] - heights[i - 1];
+                if (bricks < 0)
+                    break;
+            }
+        }
+    }
     return 0;
 }
