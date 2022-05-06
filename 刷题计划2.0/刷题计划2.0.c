@@ -1846,101 +1846,292 @@ int main()
 //}
 #include <stdio.h>
 #include <stdlib.h>
+//
+//int comp(const void* e1, const void* e2)
+//{
+//    return (*(int*)e1 - *(int*)e2);
+//}
+//
+//int main()
+//{
+//    int heights[] = { 21,21,31,561,5,132,1,684,89,4,987,984,15,1,321,3251,654,98,78,41,51,321,6,4,984,651,23,16,864,98,8 };
+//    int heightsSize = 30;
+//    int ladders = 0;
+//    int bricks = 1000;
+//    int i = 0;
+//    int rear = 0;
+//    if (heightsSize == 1)
+//    return 0;
+//    for (i = 1; i < heightsSize && rear < ladders; i++)
+//    {
+//        if (heights[i] > heights[i - 1])
+//        arr[rear++] = heights[i] - heights[i - 1];
+//    }
+//    if (i == heightsSize)
+//    return heightsSize - 1;
+//    qsort(arr,rear,sizeof(int),comp);
+//    for (i; i < heightsSize; i++)
+//    {
+//        if (heights[i] > heights[i - 1])
+//        {
+//          if (arr[0] < heights[i] - heights[i - 1])
+//          {
+//            bricks -= arr[0];
+//            if (bricks < 0)
+//            break;
+//            int j = 0;
+//            for (j = 1; j < rear; j++)
+//            {
+//                arr[j - 1] = arr[j];
+//                if (arr[j] > heights[i] - heights[i - 1])
+//                {
+//                    arr[j - 1] = arr[j - 1] = arr[j];
+//                    break;
+//                }
+//            }
+//            if (j == rear)
+//            arr[j - 1] = heights[i] - heights[i - 1];
+//          }
+//          else
+//          {
+//            bricks -= heights[i] - heights[i - 1];
+//            if (bricks < 0)
+//            break;
+//          }
+//        }
+//    }
+//    return i - 1; }
+//    int arr[10005] = { 0 };
+//    int i = 0;
+//    int rear = 0;
+//    for(i = 1; i < heightsSize && rear < ladders; i++)
+//    {
+//        if (heights[i] > heights[i - 1])
+//            arr[rear++] = heights[i] - heights[i - 1];
+//    }
+//    if (i == heightsSize)
+//        return heightsSize - 1;
+//    qsort(arr, rear, sizeof(int), comp);
+//    for(i; i < heightsSize; i++)
+//    {
+//        if (heights[i] > heights[i - 1])
+//        {
+//            if (arr[0] < heights[i] - heights[i - 1])
+//            {
+//                bricks -= arr[0];
+//                if (bricks < 0)
+//                    break;
+//                int j = 0;
+//                for (j = 1; j < rear; j++)
+//                {
+//                    arr[j - 1] = arr[j];
+//                    if (arr[j] > heights[i] - heights[i - 1])
+//                    {
+//                        arr[j - 1] = arr[j - 1] = arr[j];
+//                        break;
+//                    }
+//                }
+//                if (j == rear)
+//                    arr[j - 1] = heights[i] - heights[i - 1];
+//            }
+//            else
+//            {
+//                bricks -= heights[i] - heights[i - 1];
+//                if (bricks < 0)
+//                    break;
+//            }
+//        }
+//    }
+//    return 0;
+//}
 
-int comp(const void* e1, const void* e2)
-{
-    return (*(int*)e1 - *(int*)e2);
+//
+//int main()
+//{
+//    char ans[] = "TTFFTT";
+//    int k = 2;
+//    int i = 0;
+//    int rear = 0;
+//    int front = 0;
+//    int sz = strlen(ans);
+//    int max1 = 0;
+//    int count = 0;
+//    while (rear < sz)
+//    {
+//        if (ans[rear] == 'T')
+//        {
+//            if (count < k)
+//                count++;
+//            else
+//            {
+//                int a = rear - front;
+//                max1 = MAX(max1, a);
+//                while (front < rear)
+//                {
+//                    if (ans[front] == 'T')
+//                    {
+//                        front++;
+//                        break;
+//                    }
+//                    else
+//                        front++;
+//                }
+//            }
+//
+//        }
+//        rear++;
+//    }
+//    int max2 = 0;
+//    rear = 0;
+//    front = 0;
+//    while (rear < sz)
+//    {
+//        if (ans[rear] == 'F')
+//        {
+//            if (count < k)
+//                count++;
+//            else
+//            {
+//                int a = rear - front;
+//                max2 = MAX(max2, a);
+//                while (front < rear)
+//                {
+//                    if (ans[front] == 'F')
+//                    {
+//                        front++;
+//                        count--;
+//                        break;
+//                    }
+//                    else
+//                        front++;
+//                }
+//
+//            }
+//
+//        }
+//        rear++;
+//    }
+//    return 0;
+//}
+
+//int main()
+//{
+//    int n = 5;
+//    int k = 2;
+//    int arr[5] = { 0 };
+//    int i = 0;
+//    for (i = 1; i <= n; i++)
+//        arr[i - 1] = i;
+//    int num = n;
+//    int flag = 0;
+//    while (num > 1)
+//    {
+//        int count = (k + flag) % num;
+//        if (count == 0)
+//            count = num - 1;
+//        arr[count - 1] = 0;
+//        flag = count - 1;
+//        for (count; count < num; count++)
+//            arr[count - 1] = arr[count];
+//        num--;
+//    }
+//    return 0;
+//}
+
+//int main()
+//{
+//    char s[] = { "aacabdkacaa" };
+//    int sz = strlen(s);
+//    int i = 0;
+//    int max = 0;
+//    int Index = 0;
+//    for (i = 0; i < sz; i++)
+//    {
+//        int left = i;
+//        int count = -1;
+//        int right = i;
+//        while (left >= 0 && right < sz)
+//        {
+//            if (s[left] == s[right])
+//                count += 2;
+//            else
+//                break;
+//            left--;
+//            right++;
+//        }
+//        if (count > max)
+//        {
+//            max = count;
+//            Index = i;
+//        }
+//        left = i - 1;
+//        right = i;
+//        count = 0;
+//        while (left >= 0 && right < sz)
+//        {
+//            if (s[left] == s[right])
+//                count += 2;
+//            left--;
+//            right++;
+//        }
+//        if (count > max)
+//        {
+//            max = count;
+//            Index = i;
+//        }
+//        if (max == sz)
+//            break;
+//    }
+//    if (max % 2 == 0)
+//        s[Index + max / 2] = '\0';
+//    else
+//        s[Index + max / 2 + 1] = '\0';
+//    return 0;
+//}
+
+//#define MAX(a,b) ((a) > b ? (a) : b)
+//int main()
+//{
+//    int nums[] = { -2,1,-3,4,-1,2,1,-5,4 };
+//    int i = 0;
+//    int numsSize = sizeof(nums) / sizeof(nums[0]);
+//    int sum = 0;
+//    for (i = 0; i < numsSize; i++)
+//    sum = MAX(sum + nums[i], nums[i]);
+//    return sum;
+//    return 0;
+//}
+
+
+#define MAX(a,b) (a > b ? a : b)
+#define MIN(a,b) (a > b ? b : a)
+
+int largestRectangleArea(int heights[8], int heightsSize) {
+    if (heightsSize == 1)
+        return heights[0];
+    int i = 0;
+    int max = 0;
+    for (i = 1; i < heightsSize; i++)
+    {
+        if (heights[i - 1] > heights[i])
+        {
+            int sz = i - 1;
+            int min = heights[sz];
+            while (sz >= 0 && heights[sz] > heights[i])
+            {
+                min = MIN(min, heights[sz]);
+                sz--;
+                max = MAX(min * (i - sz), max);
+            }
+        }
+    }
+    return max;
 }
-
 int main()
 {
-    int heights[] = { 21,21,31,561,5,132,1,684,89,4,987,984,15,1,321,3251,654,98,78,41,51,321,6,4,984,651,23,16,864,98,8 };
-    int heightsSize = 30;
-    int ladders = 0;
-    int bricks = 1000;
-    int i = 0;
-    int rear = 0;
-    if (heightsSize == 1)
-    return 0;
-    for (i = 1; i < heightsSize && rear < ladders; i++)
-    {
-        if (heights[i] > heights[i - 1])
-        arr[rear++] = heights[i] - heights[i - 1];
-    }
-    if (i == heightsSize)
-    return heightsSize - 1;
-    qsort(arr,rear,sizeof(int),comp);
-    for (i; i < heightsSize; i++)
-    {
-        if (heights[i] > heights[i - 1])
-        {
-          if (arr[0] < heights[i] - heights[i - 1])
-          {
-            bricks -= arr[0];
-            if (bricks < 0)
-            break;
-            int j = 0;
-            for (j = 1; j < rear; j++)
-            {
-                arr[j - 1] = arr[j];
-                if (arr[j] > heights[i] - heights[i - 1])
-                {
-                    arr[j - 1] = arr[j - 1] = arr[j];
-                    break;
-                }
-            }
-            if (j == rear)
-            arr[j - 1] = heights[i] - heights[i - 1];
-          }
-          else
-          {
-            bricks -= heights[i] - heights[i - 1];
-            if (bricks < 0)
-            break;
-          }
-        }
-    }
-    return i - 1; }
-    int arr[10005] = { 0 };
-    int i = 0;
-    int rear = 0;
-    for(i = 1; i < heightsSize && rear < ladders; i++)
-    {
-        if (heights[i] > heights[i - 1])
-            arr[rear++] = heights[i] - heights[i - 1];
-    }
-    if (i == heightsSize)
-        return heightsSize - 1;
-    qsort(arr, rear, sizeof(int), comp);
-    for(i; i < heightsSize; i++)
-    {
-        if (heights[i] > heights[i - 1])
-        {
-            if (arr[0] < heights[i] - heights[i - 1])
-            {
-                bricks -= arr[0];
-                if (bricks < 0)
-                    break;
-                int j = 0;
-                for (j = 1; j < rear; j++)
-                {
-                    arr[j - 1] = arr[j];
-                    if (arr[j] > heights[i] - heights[i - 1])
-                    {
-                        arr[j - 1] = arr[j - 1] = arr[j];
-                        break;
-                    }
-                }
-                if (j == rear)
-                    arr[j - 1] = heights[i] - heights[i - 1];
-            }
-            else
-            {
-                bricks -= heights[i] - heights[i - 1];
-                if (bricks < 0)
-                    break;
-            }
-        }
-    }
+    int heights[] = { 2,1,5,6,2,3 };
+    int sz = sizeof(heights) / sizeof(heights[0]);
+    int a = largestRectangleArea( heights, sz);
+    printf("%d\n", a);
     return 0;
 }
